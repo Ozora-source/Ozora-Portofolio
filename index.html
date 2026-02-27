@@ -6,13 +6,14 @@
     <title>Ozora Portfolio</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-            font-family: 'Segoe UI', sans-serif;
-        }
+       * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+    scroll-behavior: smooth;
+}
+
 
         body {
     background: linear-gradient(135deg, #0f172a, #1e293b, #0f172a);
@@ -21,32 +22,33 @@
 }
 
         header {
-        position: fixed;
-        width: 100%;
-        top: 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px 10%;
-        background: rgba(15, 23, 42, 0.7);
-        backdrop-filter: blur(15px);
-        border-bottom: 1px solid rgba(56,189,248,0.2);
-        z-index: 1000;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(56,189,248,0.2);
+    z-index: 1000;
 }
 
         header a.logo {
-            font-size: 22px;
-            font-weight: bold;
-            color: #38bdf8;
-            text-decoration: none;
-        }
+    font-size: 20px;
+    font-weight: bold;
+    color: #38bdf8;
+    text-decoration: none;
+}
 
         nav a {
-            margin-left: 25px;
-            text-decoration: none;
-            color: #fff;
-            transition: 0.3s;
-        }
+    margin-left: 15px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 14px;
+    transition: 0.3s;
+}
 
         nav a:hover {
             color: #38bdf8;
@@ -83,15 +85,16 @@
         }
         .btn {
     display: inline-block;
-    padding: 12px 28px;
+    padding: 10px 25px;
     background: linear-gradient(90deg, #38bdf8, #6366f1);
     color: #fff;
-    border-radius: 30px;
-    text-decoration: none;
+    border-radius: 25px;
     font-weight: bold;
+    text-decoration: none;
     transition: 0.4s ease;
-    box-shadow: 0 0 20px rgba(56,189,248,0.5);
 }
+.btn:hover { transform: translateY(-3px); }
+
 
     .btn:hover {
     transform: translateY(-3px);
@@ -265,10 +268,9 @@
 
 .certificate-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* maksimal 5 menyamping */
-    gap: 20px;
-    max-width: 1200px;
-    margin: auto;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+    max-width: 100%;
 }
 
 .certificate-item {
@@ -297,6 +299,8 @@
     flex-direction: column;
     gap: 30px;
 }
+
+.cv-container { display: flex; flex-direction: column; gap: 20px; }
 
 .experience-card {
     background: #0f172a;
@@ -363,8 +367,69 @@
             }
         }
 
-        #contact a {
-    text-decoration: none; /* hapus garis bawah */
+        /* Mobile */
+    @media (max-width: 768px) {
+    .home {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 100px 5% 50px;
+    }
+    .home-content h1 { font-size: 28px; }
+    .home-content h3 { font-size: 20px; }
+    .home-img img {
+        width: 180px;
+        height: 180px;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-highlight {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .highlight-box { width: 100%; max-width: 300px; margin: auto; }
+}
+
+@media (max-width: 768px) {
+    .skills-grid, .certificate-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .cv-container {
+        padding: 10px 5%;
+        gap: 20px;
+    }
+    .experience-card {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    #contact div a { font-size: 24px; margin: 0 10px; }
+}
+
+/* Tablet */
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .home {
+        flex-direction: column; /* teks & foto jadi vertikal */
+        text-align: center;
+        gap: 20px;
+    }
+
+    .home-content h1 { font-size: 28px; }
+    .home-content h3 { font-size: 20px; }
+    .home-content p { font-size: 16px; }
+
+    .home-img img {
+        width: 220px;  /* sesuaikan ukuran foto */
+        height: 220px;
+    }
 }
 
     </style>
@@ -520,30 +585,9 @@
         <div class="skill-item">
             <img src="img/ss.jpeg" alt="CSS Logo">
             <p>CSS</p>
+            
         </div>
 
-    </div>
-</section>
-
-<section id="certificates" class="certificates">
-    <h2 class="section-title">Certificates</h2>
-    <div class="card-container">
-        <div class="card">
-            <h3>3rd Place – Rector Cup Band (BINUS University)</h3>
-            <p>CRecognized for outstanding musical performance and strong team collaboration.</p>
-        </div>
-        <div class="card">
-            <h3>Python Programming & Data Science</h3>
-            <p>Completed Python programming and data science training.</p>
-        </div>
-        <div class="card">
-            <h3>International Webinar Participant – Multimedia University</h3>
-            <p>Completed an international webinar hosted by Multimedia University, focusing on topic. Expanded knowledge in global technology trends and cross-cultural academic discussions.</p>
-        </div>
-        <div class="card">
-            <h3>Generative AI Program Graduate – Microsoft Elevate</h3>
-            <p>Successfully completed the Generative AI program under Microsoft Elevate, gaining practical knowledge in AI fundamentals, prompt engineering, and real-world AI applications.</p>
-        </div>
     </div>
 </section>
 
@@ -551,86 +595,99 @@
     <h2 class="section-title">My Certificates</h2>
 
     <div class="certificate-grid">
-
         <div class="certificate-item">
-            <img src="img/dicoding.jpeg" alt="Certificate 1">
+            <img src="img/dicoding.jpeg" alt="Certificate 1" onclick="openLightbox(this.src)">
         </div>
-
         <div class="certificate-item">
-            <img src="img/Screenshot 2026-02-26 215103.png" alt="Certificate 2">
+            <img src="img/python.png" alt="Certificate 2" onclick="openLightbox(this.src)">
         </div>
-
         <div class="certificate-item">
-            <img src="img/bslc.jpeg" alt="Certificate 3">
+            <img src="img/bslc.jpeg" alt="Certificate 3" onclick="openLightbox(this.src)">
         </div>
-
         <div class="certificate-item">
-            <img src="img/python.png" alt="Certificate 4">
+            <img src="img/multimedia.png" alt="Certificate 4" onclick="openLightbox(this.src)">
         </div>
-
         <div class="certificate-item">
-            <img src="img/multimedia.png" alt="Certificate 3">
+            <img src="img/kpk.jpeg" alt="Certificate 5" onclick="openLightbox(this.src)">
         </div>
-
         <div class="certificate-item">
-            <img src="img/kpk.jpeg" alt="Certificate 3">
+            <img src="img/bgdc.jpeg" alt="Certificate 6" onclick="openLightbox(this.src)">
         </div>
-
         <div class="certificate-item">
-            <img src="img/bgdc.jpeg" alt="Certificate 3">
+            <img src="img/burncup.jpeg" alt="Certificate 7" onclick="openLightbox(this.src)">
         </div>
-
-        <div class="certificate-item">
-            <img src="img/burncup.jpeg" alt="Certificate 3">
-        </div>
-
     </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" alt="Full Certificate">
+    </div>
+
 </section>
 
-<section id="cv" class="cv">
-    <h2 class="section-title">Curriculum Vitae & Experience</h2>
+<style>
+.certificate-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 20px;  /* Jarak antar sertifikat lebih longgar */
+    max-width: 100%;
+    margin: auto;
+}
 
-    <div class="cv-container">
+.certificate-item img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-        <!-- Download Button -->
-        <div style="text-align:center;">
-            <a href="cv_ozora.pdf" class="btn" target="_blank" download>
-                <i class="fa-solid fa-download"></i> Download Full CV
-            </a>
-        </div>
+.certificate-item img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
 
-        <!-- Experience 1 -->
-        <div class="experience-card">
-            <h3>Commite of Student Talent Fest</h3>
-            <span>BINUS University</span>
-            <p>
-               I was part of the organizing committee for the Student Talent Fest event across the Greater Jakarta area, 
-               hosted by BINUS University
-            </p>
-        </div>
+/* Lightbox */
+#lightbox {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
 
-        <!-- Experience 2 -->
-        <div class="experience-card">
-            <h3>Generative AI Program Participant</h3>
-            <span>Microsoft Elevate</span>
-            <p>
-                Completed training in AI fundamentals and prompt engineering. 
-                Applied AI tools to enhance productivity and develop innovative digital solutions.
-            </p>
-        </div>
+#lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+    box-shadow: 0 0 30px #000;
+}
 
-        <!-- Experience 3 -->
-        <div class="experience-card">
-            <h3>Creative & Design Projects</h3>
-            <span>Personal & Academic Projects</span>
-            <p>
-                Designed and developed web-based projects using HTML, CSS, and C. 
-                Focused on clean UI design, usability, and performance optimization.
-            </p>
-        </div>
+/* Responsiveness untuk HP */
+@media (max-width: 768px) {
+    .certificate-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 15px;
+    }
+    .certificate-item img {
+        height: 140px;
+    }
+}
+</style>
 
-    </div>
-</section>
+<script>
+function openLightbox(src){
+    document.getElementById('lightbox').style.display = 'flex';
+    document.getElementById('lightbox-img').src = src;
+}
+function closeLightbox(){
+    document.getElementById('lightbox').style.display = 'none';
+}
+</script>
 
 <section id="contact">
     <h2 class="section-title">Contact</h2>
