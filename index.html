@@ -1,721 +1,595 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ozora Portfolio</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-    <style>
-       * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
-    scroll-behavior: smooth;
-}
-
-
-        body {
-    background: linear-gradient(135deg, #0f172a, #1e293b, #0f172a);
-    background-attachment: fixed;
-    color: #f1f5f9;
-}
-
-        header {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 5%;
-    background: rgba(15, 23, 42, 0.85);
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(56,189,248,0.2);
-    z-index: 1000;
-}
-
-        header a.logo {
-    font-size: 20px;
-    font-weight: bold;
-    color: #38bdf8;
-    text-decoration: none;
-}
-
-        nav a {
-    margin-left: 15px;
-    text-decoration: none;
-    color: #fff;
-    font-size: 14px;
-    transition: 0.3s;
-}
-
-        nav a:hover {
-            color: #38bdf8;
-        }
-
-        section {
-            padding: 120px 10% 80px;
-            min-height: 100vh;
-        }
-
-        .home {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-        }
-
-        .home-content {
-            max-width: 600px;
-        }
-
-        .home-content h1 {
-            font-size: 40px;
-        }
-
-        .home-content span {
-            color: #38bdf8;
-        }
-
-        .home-content p {
-            margin: 20px 0;
-            line-height: 1.6;
-            color: #cbd5e1;
-        }
-        .btn {
-    display: inline-block;
-    padding: 10px 25px;
-    background: linear-gradient(90deg, #38bdf8, #6366f1);
-    color: #fff;
-    border-radius: 25px;
-    font-weight: bold;
-    text-decoration: none;
-    transition: 0.4s ease;
-}
-.btn:hover { transform: translateY(-3px); }
-
-
-    .btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 0 30px rgba(99,102,241,0.7);
-}
-
-        .btn:hover {
-            background: #0ea5e9;
-        }
-
-        .home-img img {
-            width: 340px;
-            height: 340px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 5px solid #38bdf8;
-            box-shadow: 0 0 30px #38bdf8;
-            animation: floatImage 4s ease-in-out infinite;
-            transition: transform 0.3s ease;
-        }
-
-        .home-img img:hover {
-            transform: scale(1.08);
-        }
-        
-        @keyframes floatImage {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 32px;
-            margin-bottom: 40px;
-            color: #38bdf8;
-        }
-
-        .about, .certificates, .cv {
-        background: linear-gradient(145deg, #1e293b, #0f172a);
-    }
-
-        /* ===== ABOUT SECTION ===== */
-.about {
-    background: #1e293b;
-    padding: 120px 10% 80px;
-    margin-top: 60px; /* jarak dari section sebelumnya */
-}
-
-.about-container {
-    max-width: 1000px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    text-align: center;
-}
-
-.about-text p {
-    color: #cbd5e1;
-    line-height: 1.8;
-    font-size: 16px;
-}
-
-.about-highlight {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-}
-
-.highlight-box {
-    background: #0f172a;
-    padding: 25px 30px;
-    border-radius: 20px;
-    width: 280px;
-    transition: 0.4s ease;
-    border: 1px solid transparent;
-}
-
-.highlight-box h3 {
-    color: #38bdf8;
-    margin-bottom: 10px;
-    font-size: 18px;
-}
-
-.highlight-box p {
-    font-size: 14px;
-    color: #94a3b8;
-}
-
-.highlight-box:hover {
-    transform: translateY(-8px);
-    border: 1px solid #38bdf8;
-    box-shadow: 0 15px 40px rgba(56, 189, 248, 0.25);
-}
-
-        #education div:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 30px rgba(56,189,248,0.3);
-}
-
-.skills {
-    background: #0f172a;
-}
-
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-    gap: 25px;
-    max-width: 1000px;
-    margin: auto;
-}
-
-.skill-item {
-    background: #1e293b;
-    padding: 30px 20px;
-    border-radius: 18px;
-    text-align: center;
-    transition: 0.4s ease;
-    cursor: pointer;
-}
-
-.skill-item img {
-    width: 60px;
-    height: 60px;
-    object-fit: contain;
-    margin-bottom: 15px;
-    transition: transform 0.3s ease;
-}
-
-.skill-item p {
-    color: #e2e8f0;
-    font-weight: 500;
-}
-
-.skill-item:hover {
-    transform: translateY(-10px);
-    background: linear-gradient(145deg, #1e293b, #0f172a);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-}
-
-.skill-item:hover img {
-    transform: scale(1.15);
-}
-
-    .progress-bar {
-    width: 100%;
-    height: 12px;
-    background: #1e293b;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-    .progress {
-    height: 100%;
-    background: linear-gradient(90deg, #38bdf8, #0ea5e9);
-    border-radius: 10px;
-    animation: grow 2s ease-in-out;
-}
-
-    @keyframes grow {
-    from {
-        width: 0;
-    }
-}
-
-.certificate-gallery {
-    background: #0f172a;
-}
-
-.certificate-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 15px;
-    max-width: 100%;
-}
-
-.certificate-item {
-    overflow: hidden;
-    border-radius: 15px;
-    transition: 0.4s ease;
-}
-
-.certificate-item img {
-    width: 100%;
-    height: 160px;   /* kecilkan tinggi */
-    object-fit: cover;
-    border-radius: 10px;
-    transition: transform 0.3s ease;
-}
-
-.certificate-item:hover img {
-    transform: scale(1.08);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
-}
-
-.cv-container {
-    max-width: 1000px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-.cv-container { display: flex; flex-direction: column; gap: 20px; }
-
-.experience-card {
-    background: #0f172a;
-    padding: 25px;
-    border-radius: 15px;
-    transition: 0.3s ease;
-}
-
-.experience-card h3 {
-    color: #38bdf8;
-    margin-bottom: 5px;
-}
-
-.experience-card span {
-    font-size: 14px;
-    color: #94a3b8;
-}
-
-.experience-card {
-    background: rgba(15, 23, 42, 0.7);
-    backdrop-filter: blur(12px);
-    padding: 25px;
-    border-radius: 20px;
-    border: 1px solid rgba(56,189,248,0.2);
-    transition: 0.4s ease;
-}
-
-.experience-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(56,189,248,0.3);
-}
-
-        .card-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-        }
-
-        .card {
-            background: #0f172a;
-            padding: 20px;
-            border-radius: 12px;
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            background: #1e3a8a;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #020617;
-        }
-
-        @media(max-width: 768px) {
-            .home {
-                flex-direction: column;
-                text-align: center;
-            }
-            .home-img {
-                margin-top: 30px;
-            }
-        }
-
-        /* Mobile */
-    @media (max-width: 768px) {
-    .home {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 100px 5% 50px;
-    }
-    .home-content h1 { font-size: 28px; }
-    .home-content h3 { font-size: 20px; }
-    .home-img img {
-        width: 180px;
-        height: 180px;
-        margin-top: 20px;
-    }
-}
-
-@media (max-width: 768px) {
-    .about-highlight {
-        flex-direction: column;
-        gap: 20px;
-    }
-    .highlight-box { width: 100%; max-width: 300px; margin: auto; }
-}
-
-@media (max-width: 768px) {
-    .skills-grid, .certificate-grid {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        gap: 15px;
-    }
-}
-
-@media (max-width: 768px) {
-    .cv-container {
-        padding: 10px 5%;
-        gap: 20px;
-    }
-    .experience-card {
-        padding: 15px;
-    }
-}
-
-@media (max-width: 768px) {
-    #contact div a { font-size: 24px; margin: 0 10px; }
-}
-
-/* Tablet */
-/* Tablet */
-@media (min-width: 769px) and (max-width: 1024px) {
-    .home {
-        flex-direction: column; /* teks & foto jadi vertikal */
-        text-align: center;
-        gap: 20px;
-    }
-
-    .home-content h1 { font-size: 28px; }
-    .home-content h3 { font-size: 20px; }
-    .home-content p { font-size: 16px; }
-
-    .home-img img {
-        width: 220px;  /* sesuaikan ukuran foto */
-        height: 220px;
-    }
-}
-
-    </style>
-</head>
-<body>
-
-<header>
-    <a href="#home" class="logo">Ozora Portofolio</a>
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#about">About me</a>
-        <a href="#education">Education</a>
-        <a href="#skills">Skills</a>
-        <a href="#certificates">Certificates</a>
-        <a href="#cv">CV</a>
-        <a href="#contact">Contact</a>
-    </nav>
-</header>
-
-
-<section id="home" class="home">
-    <div class="home-content">
-        <h1>Hello, I'm <span>Ozora Yericho Simanjuntak</span></h1>
-        <h3>Software Engineer</h3>
-        <p>Computer Science student at BINUS University passionate about technology, creativity, and innovation in education for the modern generation.</p>
-        <a href="#contact" class="btn">Contact Me</a>
-    </div>
-    <div class="home-img">
-        <img src="img/jora.jpeg" alt="Profile Photo">
-    </div>
-
-    
-    <section id="about" class="about">  
-    <h2 class="section-title">About Me</h2>
-
-    <div class="about-container">
-
-        <div class="about-text">
-            <p>
-                Hello! I'm <span style="color:#38bdf8; font-weight:bold;">Ozora Yericho Simanjuntak</span>, 
-                a Computer Science student at BINUS University specializing in Software Engineering.
-            </p>
-
-            <p>
-                I am passionate about technology, software development, and innovation. 
-                I continuously improve my programming and problem-solving skills 
-                through projects, competitions, and leadership activities.
-            </p>
-        </div>
-
-        <div class="about-highlight">
-            <div class="highlight-box">
-                <h3>🎯 Career Goal</h3>
-                <p>To become a professional Software Engineer and build impactful digital solutions.</p>
-            </div>
-
-            <div class="highlight-box">
-                <h3>💡 Passion</h3>
-                <p>AI, Software Development, UI/UX Design, and Emerging Technologies.</p>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-</section>
-
-<h3 style="color:#38bdf8; margin-bottom:20px;"></h3>
-
-<div style="display:flex; flex-direction:column; gap:25px;">
-
-    <section id="education" class="about">
-    <h2 class="section-title">Education</h2>
-    <div style="max-width:900px; margin:auto; display:flex; flex-direction:column; gap:30px;">
-        <div style="display:flex; align-items:center; gap:25px; background:#0f172a; padding:25px; border-radius:15px; transition:0.3s;">
-            <img src="img/bt.png" alt="SMP Logo" style="width:80px; height:80px; object-fit:contain; background:white; padding:10px; border-radius:15px;">
-            <div>
-                <h3>SMP Bintang Timur Pematangsiantar</h3>
-                <p style="color:#38bdf8;">Junior High School</p>
-                <p style="color:#94a3b8; font-size:14px;">Rooted in achievement, faith, and integrity, I consistently uphold the spirit of “struggle, train, and achieve.”</p>
-            </div>
-        </div>
-        <div style="display:flex; align-items:center; gap:25px; background:#0f172a; padding:25px; border-radius:15px; transition:0.3s;">
-            <img src="img/budimulia.png" alt="SMA Logo" style="width:80px; height:80px; object-fit:contain; background:white; padding:10px; border-radius:15px;">
-            <div>
-                <h3>SMA Budi Mulia Pematangsiantar</h3>
-                <p style="color:#38bdf8;">Senior High School</p>
-                <p style="color:#94a3b8; font-size:14px;">Built strong academic foundations and actively participated in leadership and school activities.</p>
-            </div>
-        </div>
-        <div style="display:flex; align-items:center; gap:25px; background:#0f172a; padding:25px; border-radius:15px; transition:0.3s;">
-            <img src="img/binus.png" alt="BINUS Logo" style="width:80px; height:80px; object-fit:contain; background:white; padding:10px; border-radius:15px;">
-            <div>
-                <h3>BINUS University</h3>
-                <p style="color:#38bdf8;">Computer Science – Software Engineering</p>
-                <p style="color:#94a3b8; font-size:14px;">Currently focusing on software development, problem-solving, and innovation in digital technology.</p>
-            </div>
-        </div>
-    </div>
-</section>
-</section>
-
-<section id="skills" class="skills">
-    <h2 class="section-title">Skills</h2>
-
-    <div class="skills-grid">
-
-        <div class="skill-item">
-            <img src="img/cpp_logo.png" alt="C++">
-            <p>C++</p>
-        </div>
-
-        <div class="skill-item">
-            <img src="img/vscode.jpeg" alt="VS Code Logo">
-            <p>Visual Studio Code</p>
-        </div>
-
-        <div class="skill-item">
-            <img src="img/python.jpeg" alt="Python Logo">
-            <p>Python</p>
-        </div>
-
-        <div class="skill-item">
-            <img src="img/gemini.jpeg" alt="Gemini Logo">
-            <p>Gemini</p>
-        </div>
-
-        <div class="skill-item">
-            <img src="img/chatgot.jpeg" alt="ChatGPT Logo">
-            <p>ChatGPT</p>
-        </div>
-
-        <div class="skill-item">
-            <img src="img/canva.jpeg" alt="Canva Logo">
-            <p>Canva</p>
-        </div>
-
-        <div class="skill-item">
-            <img src="img/word.jpeg" alt="Microsoft Word Logo">
-            <p>Microsoft Word</p>
-        </div>
-
-        <div class="skill-item">
-            <img src="img/excel.jpeg" alt="Microsoft Excel Logo">
-            <p>Microsoft Excel</p>
-        </div>
-
-        <div class="skill-item">
-            <img src="img/html.jpeg" alt="HTML Logo">
-            <p>HTML</p>
-        </div>
-
-        <div class="skill-item">
-            <img src="img/ss.jpeg" alt="CSS Logo">
-            <p>CSS</p>
-            
-        </div>
-
-    </div>
-</section>
-
-<section id="certificate-gallery" class="certificate-gallery">
-    <h2 class="section-title">My Certificates</h2>
-
-    <div class="certificate-grid">
-        <div class="certificate-item">
-            <img src="img/dicoding.jpeg" alt="Certificate 1" onclick="openLightbox(this.src)">
-        </div>
-        <div class="certificate-item">
-            <img src="img/python.png" alt="Certificate 2" onclick="openLightbox(this.src)">
-        </div>
-        <div class="certificate-item">
-            <img src="img/bslc.jpeg" alt="Certificate 3" onclick="openLightbox(this.src)">
-        </div>
-        <div class="certificate-item">
-            <img src="img/multimedia.png" alt="Certificate 4" onclick="openLightbox(this.src)">
-        </div>
-        <div class="certificate-item">
-            <img src="img/kpk.jpeg" alt="Certificate 5" onclick="openLightbox(this.src)">
-        </div>
-        <div class="certificate-item">
-            <img src="img/bgdc.jpeg" alt="Certificate 6" onclick="openLightbox(this.src)">
-        </div>
-        <div class="certificate-item">
-            <img src="img/burncup.jpeg" alt="Certificate 7" onclick="openLightbox(this.src)">
-        </div>
-    </div>
-
-    <!-- Lightbox -->
-    <div id="lightbox" onclick="closeLightbox()">
-        <img id="lightbox-img" src="" alt="Full Certificate">
-    </div>
-
-</section>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ozora Portfolio V5</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-.certificate-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 20px;  /* Jarak antar sertifikat lebih longgar */
-    max-width: 100%;
-    margin: auto;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+    scroll-behavior:smooth;
 }
 
-.certificate-item img {
-    width: 100%;
-    height: 160px;
-    object-fit: cover;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+body{
+    background:#0a0f1c;
+    color:white;
+    overflow-x:hidden;
 }
 
-.certificate-item img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+/* Particle Canvas */
+#particles{
+    position:fixed;
+    width:100%;
+    height:100%;
+    z-index:-1;
 }
 
-/* Lightbox */
-#lightbox {
-    display: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.85);
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
+/* Navbar */
+nav{
+    position:fixed;
+    width:100%;
+    top:0;
+    backdrop-filter:blur(15px);
+    background:rgba(255,255,255,0.05);
+    display:flex;
+    justify-content:space-between;
+    padding:15px 40px;
+    z-index:1000;
 }
 
-#lightbox img {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 10px;
-    box-shadow: 0 0 30px #000;
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:25px;
 }
 
-/* Responsiveness untuk HP */
-@media (max-width: 768px) {
-    .certificate-grid {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        gap: 15px;
+
+
+nav ul li a{
+    text-decoration:none;
+    color:white;
+    transition:0.3s;
+}
+
+nav ul li a:hover{
+    color:#00f7ff;
+    text-shadow:0 0 10px #00f7ff;
+}
+
+/* Section */
+section{
+    min-height:100vh;
+    padding:120px 10%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+/* Card */
+.card{
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(20px);
+    border-radius:20px;
+    padding:40px;
+    box-shadow:0 0 30px rgba(0,255,255,0.2);
+    transition:0.4s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 60px rgba(0,255,255,0.7);
+}
+
+/* Button */
+.btn{
+    padding:12px 30px;
+    border-radius:30px;
+    border:none;
+    background:#00f7ff;
+    color:black;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:white;
+    box-shadow:0 0 20px #00f7ff;
+}
+
+/* Grid */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+    margin-top:30px;
+}
+
+.typing{
+    color:#00f7ff;
+    font-size:2rem;
+}
+
+/* Scroll Reveal */
+.hidden{
+    opacity:0;
+    transform:translateY(40px);
+    transition:all 1s;
+}
+
+.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* Responsive */
+@media(max-width:768px){
+    section{
+        padding:120px 5%;
     }
-    .certificate-item img {
-        height: 140px;
+}
+
+/* Layout kiri kanan */
+.home-flex{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:50px;
+}
+
+/* Text kiri */
+.home-text{
+    flex:1;
+}
+
+/* Foto kanan */
+.profile-wrapper{
+    flex:1;
+    display:flex;
+    justify-content:center;
+}
+
+/* Foto bulat */
+.profile-img{
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid #00f7ff;
+    box-shadow:0 0 30px rgba(0,255,255,0.6);
+    transition:0.4s;
+}
+
+.profile-img:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 60px rgba(0,255,255,0.9);
+}
+
+/* Responsive HP */
+@media(max-width:768px){
+    .home-flex{
+        flex-direction:column-reverse;
+        text-align:center;
+    }
+
+    .profile-img{
+        width:130px;
+        height:130px;
+        margin-bottom:20px;
     }
 }
+
+/* CSS Education */
+
+.edu-card{
+    text-align:center;
+    padding:30px;
+}
+
+#education h1{
+    margin-bottom:40px;
+}
+
+.edu-card h2{
+    color:#00f7ff;
+    margin-bottom:10px;
+}
+
+.edu-card p{
+    margin-bottom:8px;
+    opacity:0.9;
+}
+
+.edu-icon{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.skill-card{
+    text-align:center;
+    padding:30px 20px;
+}
+
+.skill-img{
+    width:70px;
+    height:70px;
+    object-fit:contain;
+    margin-bottom:15px;
+    transition:0.4s;
+}
+
+.skill-card:hover .skill-img{
+    transform:scale(1.2) rotate(5deg);
+}
+
+.skill-card h3{
+    margin-top:10px;
+    font-weight:600;
+}
+
+/* Experience hover */
+.exp-card{
+    cursor:pointer;
+}
+
+/* Modal Background */
+.modal{
+    display:none;
+    position:fixed;
+    z-index:2000;
+    padding-top:100px;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background-color:rgba(0,0,0,0.9);
+    text-align:center;
+}
+
+/* Modal Image */
+.modal-content{
+    max-width:80%;
+    max-height:80%;
+    border-radius:20px;
+    box-shadow:0 0 40px #00f7ff;
+    animation:zoomIn 0.4s ease;
+}
+
+/* Close Button */
+.close{
+    position:absolute;
+    top:40px;
+    right:60px;
+    color:white;
+    font-size:40px;
+    cursor:pointer;
+}
+
+/* Animation */
+@keyframes zoomIn{
+    from{transform:scale(0.5);opacity:0;}
+    to{transform:scale(1);opacity:1;}
+}
+
+*{
+    -webkit-tap-highlight-color: transparent;
+}
+
+.social{
+    text-decoration:none;
+    border:none;
+}
+
+#education h2{
+    color:#00f7ff;
+}
+
+#education p{
+    color:rgba(255,255,255,0.85);
+}
+
+
+
 </style>
+</head>
 
-<script>
-function openLightbox(src){
-    document.getElementById('lightbox').style.display = 'flex';
-    document.getElementById('lightbox-img').src = src;
-}
-function closeLightbox(){
-    document.getElementById('lightbox').style.display = 'none';
-}
-</script>
+<body>
 
-<section id="contact">
-    <h2 class="section-title">Contact</h2>
-    <div style="text-align:center;">
-        <p>Email: ozora.simanjuntak@binus.ac.id</p>
-        <p>Phone: +62-812-6003-7606</p>
-        <div style="margin-top:25px; font-size:28px;">
-    <a href="https://wa.me/6281260037606" target="_blank" 
-       style="margin:0 15px; color:#25D366; text-decoration:none;">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
-    
-    <a href="https://instagram.com/ozorayericho" target="_blank" 
-       style="margin:0 15px; color:#E4405F; text-decoration:none;">
-        <i class="fa-brands fa-instagram"></i>
-    </a>
-    
-    <a href="https://linkedin.com/in/Ozora Yericho Simanjuntak" target="_blank" 
-       style="margin:0 15px; color:#0A66C2; text-decoration:none;">
-        <i class="fa-brands fa-linkedin"></i>
-    </a>
+<canvas id="particles"></canvas>
+
+<nav>
+<h2>Ozora</h2>
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#education">Education</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#certificates">Certificates</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+
+<!-- HOME -->
+<section id="home">
+<div class="home-flex card hidden">
+
+    <div class="home-text">
+    <h1>Hello, I'm Ozora Yericho Simanjuntak 👋</h1>
+    <h2 class="typing"></h2>
+    <p>Binus University | Student | Jawa Barat </p>
+    <br>
+    <button class="btn">Explore</button>
+    </div>
+
+    <div class="profile-wrapper">
+    <img src="weF.jpeg" class="profile-img">
+    </div>
+
 </div>
 </section>
 
-<footer>
-    <p>© 2026 Ozora Yericho Simanjuntak | All Rights Reserved</p>
-</footer>
+<!--About -->
+<section id="about">
+    <h1 style="margin-bottom:40px;">About</h1>
+
+    <div class="about-grid">
+
+        <div class="card hidden">
+            <h2>About me</h2>
+            <p>
+                Saya merupakan mahasiswa aktif di BINUS University yang memiliki minat besar dalam bidang teknologi dan pengembangan web modern.
+            </p>
+            <p>
+                Saya fokus membangun website yang responsif, interaktif, dan memiliki tampilan futuristik.
+            </p>
+        </div>
+
+        <div class="card hidden">
+            <h2>🎯 Career Goal</h2>
+            <p>
+               To become a professional Software Engineer and build impactful digital solutions.
+            </p>
+            <p>
+            </p>
+        </div>
+
+        <div class="card hidden">
+            <h2>💡 Passion</h2>
+            <p>
+                Saya aktif dalam dunia programming dan digital marketing, serta terus mengembangkan kemampuan dalam berbagai bahasa pemrograman.
+            </p>
+            <p>
+                AI, Software Development, UI/UX Design, and Emerging Technologies.  
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<section id="education">
+<h1 class="hidden">Education</h1>
+
+<div class="grid">
+
+    <div class="card hidden edu-card">
+        <h2>
+    <img src="nus.png" class="edu-icon">
+</h2>
+        <h2>BINUS University</h2>
+        <p>S1 - Computer Science</p>
+        <p>2025 - Sekarang</p>
+    </div>
+
+    <div class="card hidden edu-card">
+        <h2>
+    <img src="budimulia.png" class="edu-icon">
+</h2>
+        <h2>SMA BUDI MULIA PEMATANGSIANTAR</h2>
+        <p>Jurusan IPA</p>
+        <p>2022 - 2025</p>
+    </div>
+
+</div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+<h1 class="hidden">My Skills</h1>
+
+<div class="grid">
+
+    <div class="card hidden skill-card">
+        <img src="html.jpeg" class="skill-img">
+        <h3>HTML</h3>
+    </div>
+
+    <div class="card hidden skill-card">
+        <img src="ss.jpeg" class="skill-img">
+        <h3>CSS</h3>
+    </div>
+
+    <div class="card hidden skill-card">
+        <img src="vscode.jpeg" class="skill-img">
+        <h3>Visual Studio</h3>
+    </div>
+
+    <div class="card hidden skill-card">
+        <img src="python.jpeg" class="skill-img">
+        <h3>Python</h3>
+    </div>
+
+    <div class="card hidden skill-card">
+        <img src="cpp_logo.png" class="skill-img">
+        <h3>C++</h3>
+    </div>
+
+    <div class="card hidden skill-card">
+        <img src="canva.jpeg" class="skill-img">
+        <h3>Canva</h3>
+    </div>
+
+    <div class="card hidden skill-card">
+        <img src="word.jpeg" class="skill-img">
+        <h3>Microsoft Word</h3>
+    </div>
+
+    <div class="card hidden skill-card">
+        <img src="excel.jpeg" class="skill-img">
+        <h3>Microsoft Excel</h3>
+    </div>
+
+</div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+<h1 class="hidden">Experience</h1>
+
+<div class="grid">
+
+<div class="card hidden exp-card" onclick="openModal('blu.jpeg')">
+blu Ambassador of Binus University 2025
+</div>
+
+<div class="card hidden exp-card" onclick="openModal('blu.jpeg')">
+3rd Rector Cup Band Binus University 2025
+</div>
+
+<div class="card hidden exp-card">
+3rd Futsal Burn Cup Binus @BEKASI 2025
+</div>
+
+<div class="card hidden exp-card" onclick="openModal('wefest.jpeg')">
+Performer WeFest Inauguration BINUS University 2025
+</div>
+
+<div class="card hidden exp-card" onclick="openModal('images/talentfest.jpg')">
+Committee of Student Talent Fest BINUS University 2025
+</div>
+
+</div>
+</section>
+
+<!-- Modal -->
+<div id="modal" class="modal" onclick="closeModal()">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modal-img">
+</div>
+
+<!-- CERTIFICATES -->
+<section id="certificates">
+<h1 class="hidden">Certificates</h1>
+<div class="grid">
+<div class="card hidden"><img src="bgdc.jpeg" width="100%"></div>
+<div class="card hidden"><img src="dicoding.jpeg" width="100%"></div>
+<div class="card hidden"><img src="burncup.jpeg" width="100%"></div>
+<div class="card hidden"><img src="python.png" width="100%"></div>
+<div class="card hidden"><img src="Screenshot 2026-02-26 215103.png" width="100%"></div>
+<div class="card hidden"><img src="kpk.jpeg" width="100%"></div>
+<div class="card hidden"><img src="bslc.jpeg" width="100%"></div>
+<div class="card hidden"><img src="ekno.jpeg" width="100%"></div>
+<div class="card hidden"><img src="multimedia.png" width="100%"></div>
+</div>
+</section>
+
+<!-- CONTACT -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<section id="contact">
+<div class="card hidden">
+<h1>Contact Me</h1>
+<br>
+
+<input type="text" placeholder="Your Name" style="width:100%;padding:10px;margin-bottom:10px;border-radius:10px;border:none;">
+<input type="email" placeholder="Your Email" style="width:100%;padding:10px;margin-bottom:10px;border-radius:10px;border:none;">
+<textarea placeholder="Your Message" style="width:100%;padding:10px;border-radius:10px;border:none;"></textarea>
+
+<br><br>
+<button class="btn">Send</button>
+
+<br><br>
+
+<div class="social-icons">
+    <a href="https://wa.me/6281260037606" target="_blank" class="social wa">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <a href="https://instagram.com/ozorayericho" target="_blank" class="social ig">
+        <i class="fab fa-instagram"></i>
+    </a>
+
+    <a href="https://linkedin.com/in/Ozora Yericho Simanjuntak" target="_blank" class="social linkedin">
+        <i class="fab fa-linkedin"></i>
+    </a>
+</div>
+
+</div>
+</section>
+
+<script>
+// Typing Effect
+const text = ["School of Computer Science","Software Engineering"];
+let count=0,index=0,currentText="",letter="";
+(function type(){
+if(count===text.length){count=0;}
+currentText=text[count];
+letter=currentText.slice(0,++index);
+document.querySelector(".typing").textContent=letter;
+if(letter.length===currentText.length){
+count++;index=0;setTimeout(type,1000);
+}else{setTimeout(type,100);}
+})();
+
+// Scroll Reveal
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){entry.target.classList.add("show");}
+});
+});
+document.querySelectorAll(".hidden").forEach(el=>observer.observe(el));
+
+// Simple Particle Background
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+let particles=[];
+for(let i=0;i<80;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*2+1,
+d:Math.random()*1
+});
+}
+function draw(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle="rgba(0,255,255,0.7)";
+particles.forEach(p=>{
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fill();
+});
+update();
+}
+function update(){
+particles.forEach(p=>{
+p.y+=p.d;
+if(p.y>canvas.height){p.y=0;}
+});
+}
+setInterval(draw,33);
+</script>
 
 </body>
+</html>
 </html>
 
