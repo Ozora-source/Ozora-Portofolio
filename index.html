@@ -184,6 +184,19 @@
         }
     }
 
+
+.particle {
+    position:absolute;
+    width:6px;
+    height:6px;
+    background:#00f5ff;
+    border-radius:50%;
+    opacity:0.5;
+    animation:float 10s infinite linear;
+    z-index:1;
+}
+
+
     /* CSS Education */
 
     .edu-card{
@@ -252,34 +265,44 @@
 
     /* ===== MODAL IMAGE ===== */
     /* ===== MODAL IMAGE IMPROVED ===== */
-    .modal-content{
-        width:75%;
-        max-width:800px;
-        max-height:85vh;
-        object-fit:contain;
-        border-radius:20px;
-        box-shadow:0 0 50px rgba(0,255,255,0.8);
-        animation:zoomIn 0.3s ease;
-    }
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
 
-    /* ===== RESPONSIVE HP ===== */
-    @media(max-width:768px){
-        .modal-content{
-            width:85%;
-            max-width:350px;
-            max-height:60vh;
-        }
-    }
+.modal-content {
+    width: 70%;          /* Lebar modal */
+    max-width: 800px;    /* Maksimal lebar */
+    max-height: 70vh;    /* Maksimal tinggi layar */
+    object-fit: contain;  /* Menjaga aspect ratio, landscape atau portrait */
+    border-radius: 15px;
+    box-shadow: 0 0 50px rgba(0,255,255,0.8);
+    transition: 0.3s ease;
+}
 
-    /* Close Button */
-    .close{
-        position:absolute;
-        top:40px;
-        right:60px;
-        color:white;
-        font-size:40px;
-        cursor:pointer;
+/* Responsive HP */
+@media(max-width:768px){
+    .modal-content {
+        width: 90%;
+        max-width: 400px;
+        max-height: 60vh;
     }
+}
+
+/* Close button */
+.close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+}
 
     /* Animation */
     @keyframes zoomIn{
@@ -423,10 +446,12 @@
             <div class="card hidden">
                 <h2>About me</h2>
                 <p>
-                    Saya merupakan mahasiswa aktif di BINUS University yang memiliki minat besar dalam bidang teknologi dan pengembangan web modern.
+                   Saya merupakan mahasiswa BINUS University yang berfokus pada Software Engineering dan memiliki ketertarikan kuat terhadap dunia teknologi 
+                   serta pengembangan sistem yang inovatif. Dengan semangat belajar yang tinggi dan pola pikir growth mindset, saya terus mengasah kemampuan dalam pemrograman, analisis masalah, serta pengembangan solusi digital yang efektif dan efisien.
                 </p>
                 <p>
-                    Saya fokus membangun website yang responsif, interaktif, dan memiliki tampilan futuristik.
+                    Saya percaya bahwa konsistensi, kreativitas, dan kemampuan beradaptasi adalah kunci untuk berkembang di era teknologi yang dinamis. 
+                    Melalui setiap proyek dan pengalaman yang saya jalani, saya berkomitmen untuk terus bertumbuh dan memberikan kontribusi nyata di dunia teknologi.
                 </p>
             </div>
 
@@ -473,6 +498,16 @@
             <h2>SMA BUDI MULIA PEMATANGSIANTAR</h2>
             <p>Jurusan IPA</p>
             <p>2022 - 2025</p>
+        </div>
+
+        
+        <div class="card hidden edu-card">
+            <h2>
+        <img src="img/bt.png" class="edu-icon">
+    </h2>
+            <h2>SMP BINTANG TIMUR PEMATANGSIANTAR</h2>
+            <p>Jurusan IPA</p>
+            <p>2019 - 2022</p>
         </div>
 
     </div>
@@ -537,8 +572,8 @@
     blu Ambassador of Binus University 2025
     </div>
 
-    <div class="card hidden exp-card" onclick="openModal('img/rector.jpeg')">
-    3rd Rector Cup Band Binus University 2025
+    <div class="card hidden exp-card" onclick="openModal('rector.jpeg')">
+    3rd Rector cup Band Binus University 2025
     </div>
 
     <div class="card hidden exp-card">
@@ -551,6 +586,14 @@
 
     <div class="card hidden exp-card" onclick="openModal('img/stf.jpeg')">
     Committee of Student Talent Fest BINUS University 2025
+    </div>
+
+     <div class="card hidden exp-card" onclick="openModal('img/wefe.jpeg')">
+    Best Keyboardist 2024 - 2025 Budi Mulia 
+    </div>
+
+     <div class="card hidden exp-card" onclick="openModal('img/wefe.jpeg')">
+    3rd Sultan Agung Music Competition Pematangsiantar 2025
     </div>
 
     </div>
@@ -566,16 +609,42 @@
     <section id="certificates">
     <h1 class="hidden">Certificates</h1>
     <div class="grid">
-    <div class="card hidden"><img src="img/bgdc.jpeg" width="100%"></div>
-    <div class="card hidden"><img src="img/dicoding.jpeg" width="100%"></div>
-    <div class="card hidden"><img src="img/burncup.jpeg" width="100%"></div>
-    <div class="card hidden"><img src="img/python.png" width="100%"></div>
-    <div class="card hidden"><img src="img/Screenshot 2026-02-26 215103.png" width="100%"></div>
-    <div class="card hidden"><img src="img/kpk.jpeg" width="100%"></div>
-    <div class="card hidden"><img src="img/bslc.jpeg" width="100%"></div>
-    <div class="card hidden"><img src="img/ekno.jpeg" width="100%"></div>
-    <div class="card hidden"><img src="img/multimedia.png" width="100%"></div>
-    </div>
+   <div class="card hidden">
+    <img src="img/dicoding.jpeg" width="100%" onclick="openModal('img/dicoding.jpeg')">
+</div>
+
+     <div class="card hidden">
+    <img src="img/burncup.jpeg" width="100%" onclick="openModal('img/dicoding.jpeg')">
+</div>
+
+     <div class="card hidden">
+    <img src="img/python.png" width="100%" onclick="openModal('img/dicoding.jpeg')">
+</div>
+
+     <div class="card hidden">
+    <img src="img/Screenshot 2026-02-26 215103.png" width="100%" onclick="openModal('img/dicoding.jpeg')">
+</div>
+
+     <div class="card hidden">
+    <img src="img/kpk.jpeg" width="100%" onclick="openModal('img/dicoding.jpeg')">
+</div>
+
+     <div class="card hidden">
+    <img src="img/bslc.jpeg" width="100%" onclick="openModal('img/dicoding.jpeg')">
+</div>
+
+     <div class="card hidden">
+    <img src="img/ekno.jpeg" width="100%" onclick="openModal('img/dicoding.jpeg')">
+</div>
+
+     <div class="card hidden">
+    <img src="img/coding.jpeg" width="100%" onclick="openModal('img/dicoding.jpeg')">
+</div>
+
+     <div class="card hidden">
+    <img src="img/multimedia.png" width="100%" onclick="openModal('img/dicoding.jpeg')">
+</div>
+
     </section>
 
     <!-- CONTACT -->
