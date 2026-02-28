@@ -1117,6 +1117,266 @@ footer {
     font-size: 0.85rem;
     color: rgba(255,255,255,0.6);
 }
+
+/* ============================================
+   POPUP MODERN - EMAIL SENT SUCCESS
+   ============================================ */
+
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.popup-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.popup-container {
+    background: linear-gradient(135deg, rgba(20, 20, 30, 0.95) 0%, rgba(10, 10, 10, 0.98) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 50px 40px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    position: relative;
+    transform: scale(0.7) translateY(50px);
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: 
+        0 25px 50px -12px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.05),
+        0 0 100px rgba(79, 70, 229, 0.3);
+}
+
+.popup-overlay.active .popup-container {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}
+
+/* Icon Success Animation */
+.popup-icon {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 25px;
+    position: relative;
+}
+
+.popup-icon-circle {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    animation: iconPop 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.2s both;
+    box-shadow: 
+        0 0 0 4px rgba(16, 185, 129, 0.3),
+        0 0 0 8px rgba(16, 185, 129, 0.1),
+        0 20px 40px rgba(16, 185, 129, 0.4);
+}
+
+.popup-icon-circle i {
+    font-size: 50px;
+    color: white;
+    animation: checkDraw 0.5s ease 0.6s both;
+}
+
+@keyframes iconPop {
+    0% {
+        transform: scale(0) rotate(-180deg);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1) rotate(0);
+        opacity: 1;
+    }
+}
+
+@keyframes checkDraw {
+    0% {
+        transform: scale(0) rotate(-45deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2) rotate(10deg);
+    }
+    100% {
+        transform: scale(1) rotate(0);
+        opacity: 1;
+    }
+}
+
+/* Ripple Effect */
+.popup-icon::before,
+.popup-icon::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid #10b981;
+    animation: ripple 2s linear infinite;
+}
+
+.popup-icon::after {
+    animation-delay: 0.5s;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Text Content */
+.popup-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeUp 0.5s ease 0.4s both;
+}
+
+.popup-message {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    animation: fadeUp 0.5s ease 0.5s both;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Button */
+.popup-btn {
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #ec4899 100%);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: fadeUp 0.5s ease 0.6s both;
+    position: relative;
+    overflow: hidden;
+}
+
+.popup-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(79, 70, 229, 0.5);
+}
+
+.popup-btn:active {
+    transform: translateY(-1px);
+}
+
+/* Confetti Canvas */
+#confetti-canvas {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 10001;
+}
+
+/* Error Popup Style */
+.popup-icon.error .popup-icon-circle {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    box-shadow: 
+        0 0 0 4px rgba(239, 68, 68, 0.3),
+        0 0 0 8px rgba(239, 68, 68, 0.1),
+        0 20px 40px rgba(239, 68, 68, 0.4);
+    animation: shake 0.5s ease;
+}
+
+.popup-icon.error::before,
+.popup-icon.error::after {
+    border-color: #ef4444;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+/* Loading State */
+.popup-icon.loading .popup-icon-circle {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    animation: pulse 1.5s ease infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(255,255,255,0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Responsive Popup */
+@media (max-width: 480px) {
+    .popup-container {
+        padding: 40px 25px;
+        margin: 20px;
+    }
+    
+    .popup-icon {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .popup-icon-circle i {
+        font-size: 40px;
+    }
+    
+    .popup-title {
+        font-size: 1.5rem;
+    }
+    
+    .popup-message {
+        font-size: 0.9rem;
+    }
+}
+
 </style>
     </head>
 
@@ -1191,8 +1451,7 @@ footer {
             <div class="card hidden">
                 <h2>💡 Passion</h2>
                 <p>
-                    Saya aktif dalam dunia programming dan digital marketing, serta terus mengembangkan kemampuan dalam berbagai bahasa pemrograman.
-                </p>
+                    I am actively involved in programming and digital marketing, and I continuously develop my skills in various programming languages.
                 <p>
                     AI, Software Development, UI/UX Design, and Emerging Technologies.  
                 </p>
@@ -1230,7 +1489,7 @@ footer {
         <img src="img/bt.png" class="edu-icon">
     </h2>
             <h2>SMP BINTANG TIMUR PEMATANGSIANTAR</h2>
-            <p>Jurusan IPA</p>
+            <p>Kurikulum - 13</p>
             <p>2019 - 2022</p>
         </div>
 
@@ -1346,7 +1605,7 @@ footer {
 </div>
 
      <div class="card hidden">
-    <img src="img/Screenshot 2026-02-26 215103.png" width="100%" onclick="openModal('Screenshot 2026-02-26 215103.png')">
+    <img src="img/Screenshot 2026-02-26 215103.png" width="100%" onclick="openModal('img/Screenshot 2026-02-26 215103.png')">
 </div>
 
      <div class="card hidden">
@@ -1366,7 +1625,7 @@ footer {
 </div>
 
      <div class="card hidden">
-    <img src="img/multimedia.png" width="100%" onclick="openModal('img/multimedia.jpeg')">
+    <img src="img/multimedia.png" width="100%" onclick="openModal('img/multimedia.png')">
 </div>
 
     </section>
@@ -1388,7 +1647,7 @@ footer {
             <a href="https://instagram.com/ozorayericho" target="_blank" class="social-btn instagram" title="Instagram">
                 <i class="fab fa-instagram"></i>
             </a>
-            <a href="https://linkedin.com/in/Ozora Yericho Simanjuntak" target="_blank" class="social-btn linkedin" title="LinkedIn">
+            <a href="https://linkedin.com/in/ozora-yericho-simanjuntak-1330413b3" target="_blank" class="social-btn linkedin" title="LinkedIn">
                 <i class="fab fa-linkedin-in"></i>
             </a>
         </div>
@@ -1403,144 +1662,206 @@ footer {
         
         <br><br>
         <button id="sendBtn" class="btn">Send Message</button>
-        
+
+        <!-- POPUP FORM KOSONG -->
+<div id="popup-empty" class="popup-overlay">
+    <div class="popup-container">
+        <div class="popup-icon-warning">
+            <i class="fas fa-exclamation"></i>
+        </div>
+        <h3 class="popup-title">Form Belum Lengkap!</h3>
+        <p class="popup-message">Mohon isi semua field yang tersedia.<br>Nama, Email, dan Pesan wajib diisi.</p>
+        <button class="popup-btn btn-warning" onclick="closePopup('popup-empty')">Oke, Mengerti</button>
     </div>
-</section>
-<!-- PASTIKAN LIBRARY EMAILJS DI-LOAD DI ATAS -->
+</div>
+
+<!-- POPUP EMAIL INVALID -->
+<div id="popup-email-invalid" class="popup-overlay">
+    <div class="popup-container">
+        <div class="popup-icon-error">
+            <i class="fas fa-at"></i>
+        </div>
+        <h3 class="popup-title">Email Tidak Valid!</h3>
+        <p class="popup-message">Format email yang Anda masukkan salah.<br>Contoh: nama@email.com</p>
+        <button class="popup-btn btn-error" onclick="closePopup('popup-email-invalid')">Oke, Perbaiki</button>
+    </div>
+</div>
+
+<!-- POPUP LOADING -->
+<div id="popup-loading" class="popup-overlay">
+    <div class="popup-container popup-small">
+        <div class="popup-spinner"></div>
+        <h3 class="popup-title">Mengirim...</h3>
+        <p class="popup-message">Mohon tunggu sebentar</p>
+    </div>
+</div>
+
+<!-- POPUP SUCCESS -->
+<div id="popup-success" class="popup-overlay">
+    <div class="popup-container">
+        <div class="popup-icon-success">
+            <i class="fas fa-check"></i>
+        </div>
+        <h3 class="popup-title">Pesan Terkirim! 🚀</h3>
+        <p class="popup-message">Terima kasih telah menghubungi saya.<br>Pesan Anda akan segera saya balas.</p>
+        <button class="popup-btn btn-success" onclick="closePopup('popup-success')">Oke, Siap!</button>
+    </div>
+</div>
+
+<!-- POPUP ERROR -->
+<div id="popup-error" class="popup-overlay">
+    <div class="popup-container">
+        <div class="popup-icon-error">
+            <i class="fas fa-times"></i>
+        </div>
+        <h3 class="popup-title">Oops, Gagal!</h3>
+        <p class="popup-message">Maaf, pesan gagal dikirim.</p>
+        <p id="error-text" class="popup-error-detail">Terjadi kesalahan pada server</p>
+        <button class="popup-btn btn-error" onclick="closePopup('popup-error')">Coba Lagi</button>
+    </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
 <script>
 // ============================================
-// DEBUG: Cek apakah script berjalan
-// ============================================
-console.log("=== SCRIPT STARTED ===");
-
-// ============================================
 // TYPING EFFECT
 // ============================================
-const text = ["School of Computer Science","Software Engineering"];
-let count=0,index=0,currentText="",letter="";
-(function type(){
-    if(count===text.length){count=0;}
-    currentText=text[count];
-    letter=currentText.slice(0,++index);
-    document.querySelector(".typing").textContent=letter;
-    if(letter.length===currentText.length){
-        count++;index=0;setTimeout(type,1000);
-    }else{setTimeout(type,100);}
+const text = ["School of Computer Science", "Software Engineering"];
+let count = 0, index = 0, currentText = "", letter = "";
+
+(function type() {
+    if (count === text.length) count = 0;
+    currentText = text[count];
+    letter = currentText.slice(0, ++index);
+    document.querySelector(".typing").textContent = letter;
+    
+    if (letter.length === currentText.length) {
+        count++;
+        index = 0;
+        setTimeout(type, 1000);
+    } else {
+        setTimeout(type, 100);
+    }
 })();
 
 // ============================================
 // SCROLL REVEAL
 // ============================================
-const observer=new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-        if(entry.isIntersecting){entry.target.classList.add("show");}
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add("show");
     });
 });
-document.querySelectorAll(".hidden").forEach(el=>observer.observe(el));
+document.querySelectorAll(".hidden").forEach(el => observer.observe(el));
 
 // ============================================
 // MODAL FUNCTIONS
 // ============================================
-function openModal(imgSrc){
+function openModal(imgSrc) {
     const modal = document.getElementById("modal");
     const modalImg = document.getElementById("modal-img");
     modal.style.display = "flex";
     modalImg.src = imgSrc;
 }
 
-function closeModal(){
+function closeModal() {
     document.getElementById("modal").style.display = "none";
 }
 
-document.getElementById("modal-img").onclick = function(event){
+document.getElementById("modal-img").onclick = function(event) {
     event.stopPropagation();
-}
+};
 
-function toggleMenu(){
+function toggleMenu() {
     document.getElementById("nav-links").classList.toggle("active");
 }
 
 // ============================================
-// EMAILJS - PERBAIKAN
+// POPUP FUNCTIONS
 // ============================================
+function showPopup(popupId) {
+    const popup = document.getElementById(popupId);
+    if (popup) {
+        popup.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
 
-// Tunggu DOM siap sepenuhnya
-document.addEventListener("DOMContentLoaded", function() {
-    
-    console.log("DOM Loaded"); // Debug
-    
-    // Cek apakah EmailJS library ada
-    if (typeof emailjs === 'undefined') {
-        console.error("❌ EmailJS library tidak ditemukan!");
-        alert("Error: EmailJS library belum ter-load");
-        return;
+function closePopup(popupId) {
+    const popup = document.getElementById(popupId);
+    if (popup) {
+        popup.classList.remove('active');
+        document.body.style.overflow = '';
     }
-    
-    console.log("✅ EmailJS library found");
-    
-    // Inisialisasi
-    try {
-        emailjs.init("2U49IurwTnRqNclp_");
-        console.log("✅ EmailJS initialized");
-    } catch(e) {
-        console.error("❌ Gagal inisialisasi:", e);
-        return;
+}
+
+// Tutup popup dengan klik overlay
+document.querySelectorAll('.popup-overlay').forEach(overlay => {
+    overlay.addEventListener('click', function(e) {
+        if (e.target === this && this.id !== 'popup-loading') {
+            closePopup(this.id);
+        }
+    });
+});
+
+// Tutup dengan tombol ESC
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        document.querySelectorAll('.popup-overlay.active').forEach(popup => {
+            if (popup.id !== 'popup-loading') {
+                closePopup(popup.id);
+            }
+        });
     }
+});
+
+// ============================================
+// EMAILJS - DENGAN POPUP CUSTOM (TANPA ALERT)
+// ============================================
+(function() {
+    emailjs.init("2U49IurwTnRqNclp_");
     
-    // Cari tombol
     const sendBtn = document.getElementById("sendBtn");
-    console.log("Send button:", sendBtn); // Debug
     
-    if(!sendBtn){
-        console.error("❌ Tombol Send tidak ditemukan!");
+    if (!sendBtn) {
+        console.error("Tombol Send tidak ditemukan!");
         return;
     }
     
-    // Tambah event listener
-    sendBtn.addEventListener("click", function(e){
+    sendBtn.addEventListener("click", function(e) {
         e.preventDefault();
-        console.log("🔘 Tombol Send diklik!"); // Debug
         
-        // Ambil nilai form
         const nameInput = document.getElementById("name");
         const emailInput = document.getElementById("email");
         const messageInput = document.getElementById("message");
-        
-        // Cek apakah elemen ditemukan
-        if(!nameInput || !emailInput || !messageInput){
-            console.error("❌ Form elements not found!");
-            alert("Error: Form tidak ditemukan");
-            return;
-        }
         
         const name = nameInput.value.trim();
         const email = emailInput.value.trim();
         const message = messageInput.value.trim();
         
-        console.log("Data:", {name, email, message}); // Debug
-        
-        // Validasi
-        if(!name || !email || !message){
-            alert("⚠️ Isi semua form dulu ya!");
+        // Validasi form kosong - POPUP CUSTOM
+        if (!name || !email || !message) {
+            showPopup('popup-empty');
             return;
         }
         
-        // Validasi email
+        // Validasi email - POPUP CUSTOM
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if(!emailPattern.test(email)){
-            alert("⚠️ Format email tidak valid!");
+        if (!emailPattern.test(email)) {
+            showPopup('popup-email-invalid');
+            emailInput.focus();
             return;
         }
         
-        // Tampilkan loading
-        sendBtn.textContent = "Mengirim...";
+        // Tampilkan popup loading
+        showPopup('popup-loading');
+        
+        // Disable button
         sendBtn.disabled = true;
+        sendBtn.textContent = "Mengirim...";
         
         // Kirim email
-        console.log("📤 Mengirim email...");
-        
         emailjs.send("service_tmzyqbv", "template_mn618ba", {
             from_name: name,
             from_email: email,
@@ -1548,32 +1869,40 @@ document.addEventListener("DOMContentLoaded", function() {
             to_name: "Ozora",
             reply_to: email
         })
-        .then(function(response){
-            console.log("✅ SUCCESS:", response);
-            alert("🚀 Pesan berhasil dikirim!");
+        .then(function(response) {
+            console.log("SUCCESS:", response);
+            
+            closePopup('popup-loading');
+            showPopup('popup-success');
             
             // Reset form
             nameInput.value = "";
             emailInput.value = "";
             messageInput.value = "";
         })
-        .catch(function(error){
-            console.error("❌ ERROR:", error);
-            alert("❌ Gagal mengirim!\n\nError: " + (error.text || "Unknown error"));
-            console.log("Full error:", error);
+        .catch(function(error) {
+            console.error("ERROR:", error);
+            
+            closePopup('popup-loading');
+            const errorText = document.getElementById('error-text');
+            if (errorText) {
+                errorText.textContent = error.text || "Terjadi kesalahan pada server";
+            }
+            showPopup('popup-error');
         })
-        .finally(function(){
-            // Reset tombol
-            sendBtn.textContent = "Send";
+        .finally(function() {
             sendBtn.disabled = false;
+            sendBtn.textContent = "Send Message";
         });
     });
-    
-    console.log("✅ Event listener attached");
-});
-
-console.log("=== SCRIPT END ===");
+})();
 </script>
+
+
+
+</script>
+
+
 
     </body>
     </html>
