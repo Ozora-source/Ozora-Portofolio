@@ -1385,7 +1385,7 @@ footer {
     <canvas id="particles"></canvas>
 
     <nav>
-    <h2>Ozora</h2>
+    <h2>Ozora Portofolio</h2>
 
     <div class="menu-toggle" onclick="toggleMenu()">
         ☰
@@ -1409,9 +1409,10 @@ footer {
         <div class="home-text">
         <h1>Hello, I'm Ozora Yericho Simanjuntak</h1>
         <h2 class="typing"></h2>
-        <p>Binus University | Student | Jawa Barat </p>
+        <p>Software Engineering | Design UI | Creative Thinking </p>
         <br>
-        <button class="btn">Explore</button>
+        <div class="btn-wrapper">
+    <button class="btn" id="exploreBtn" type="button">Explore</button></div>
         </div>
 
         <div class="profile-wrapper">
@@ -1662,6 +1663,64 @@ footer {
         
         <br><br>
         <button id="sendBtn" class="btn">Send Message</button>
+        
+
+        <!-- POPUP EXPLORE -->
+<div id="popup-explore" class="popup-overlay">
+    <div class="popup-container" style="max-width: 450px; padding: 40px 35px;">
+        <h3 style="font-size: 1.6rem; margin-bottom: 25px; color: white; font-weight: 700; background: linear-gradient(135deg, #3b82f6 0%, #ec4899 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Jelajahi Portfolio Saya 🚀</h3>
+        
+        <div style="display: grid; gap: 15px; margin-bottom: 30px;">
+            <a href="#about" onclick="closePopup('popup-explore')" style="display: flex; align-items: center; gap: 15px; padding: 15px 20px; background: rgba(255,255,255,0.05); border-radius: 12px; text-decoration: none; color: white; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1);">
+                <div style="width: 45px; height: 45px; background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div style="text-align: left;">
+                    <div style="font-weight: 600; font-size: 1rem;">About Me</div>
+                    <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Kenali saya lebih dekat</div>
+                </div>
+                <i class="fas fa-chevron-right" style="margin-left: auto; color: rgba(255,255,255,0.4);"></i>
+            </a>
+            
+            <a href="#projects" onclick="closePopup('popup-explore')" style="display: flex; align-items: center; gap: 15px; padding: 15px 20px; background: rgba(255,255,255,0.05); border-radius: 12px; text-decoration: none; color: white; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1);">
+                <div style="width: 45px; height: 45px; background: linear-gradient(135deg, #ec4899 0%, #f59e0b 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <div style="text-align: left;">
+                    <div style="font-weight: 600; font-size: 1rem;">Experience</div>
+                    <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Lihat pengalaman & prestasi</div>
+                </div>
+                <i class="fas fa-chevron-right" style="margin-left: auto; color: rgba(255,255,255,0.4);"></i>
+            </a>
+            
+            <a href="#skills" onclick="closePopup('popup-explore')" style="display: flex; align-items: center; gap: 15px; padding: 15px 20px; background: rgba(255,255,255,0.05); border-radius: 12px; text-decoration: none; color: white; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1);">
+                <div style="width: 45px; height: 45px; background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div style="text-align: left;">
+                    <div style="font-weight: 600; font-size: 1rem;">Skills</div>
+                    <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Teknologi yang dikuasai</div>
+                </div>
+                <i class="fas fa-chevron-right" style="margin-left: auto; color: rgba(255,255,255,0.4);"></i>
+            </a>
+            
+            <a href="#certificates" onclick="closePopup('popup-explore')" style="display: flex; align-items: center; gap: 15px; padding: 15px 20px; background: rgba(255,255,255,0.05); border-radius: 12px; text-decoration: none; color: white; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1);">
+                <div style="width: 45px; height: 45px; background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <div style="text-align: left;">
+                    <div style="font-weight: 600; font-size: 1rem;">Certificates</div>
+                    <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Sertifikat & penghargaan</div>
+                </div>
+                <i class="fas fa-chevron-right" style="margin-left: auto; color: rgba(255,255,255,0.4);"></i>
+            </a>
+        </div>
+        
+        <button onclick="closePopup('popup-explore')" style="background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); padding: 12px 30px; border-radius: 25px; cursor: pointer; font-weight: 500; transition: 0.3s;">
+            Tutup
+        </button>
+    </div>
+</div>
 
         <!-- POPUP FORM KOSONG -->
 <div id="popup-empty" class="popup-overlay">
@@ -1721,6 +1780,7 @@ footer {
     </div>
 </div>
 
+
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
 <script>
@@ -1734,7 +1794,9 @@ let count = 0, index = 0, currentText = "", letter = "";
     if (count === text.length) count = 0;
     currentText = text[count];
     letter = currentText.slice(0, ++index);
-    document.querySelector(".typing").textContent = letter;
+    
+    const typingElement = document.querySelector(".typing");
+    if (typingElement) typingElement.textContent = letter;
     
     if (letter.length === currentText.length) {
         count++;
@@ -1756,26 +1818,44 @@ const observer = new IntersectionObserver(entries => {
 document.querySelectorAll(".hidden").forEach(el => observer.observe(el));
 
 // ============================================
-// MODAL FUNCTIONS
+// MODAL FUNCTIONS (GAMBAR)
 // ============================================
 function openModal(imgSrc) {
     const modal = document.getElementById("modal");
     const modalImg = document.getElementById("modal-img");
-    modal.style.display = "flex";
-    modalImg.src = imgSrc;
+    if (modal && modalImg) {
+        modal.style.display = "flex";
+        modalImg.src = imgSrc;
+    }
 }
 
 function closeModal() {
-    document.getElementById("modal").style.display = "none";
+    const modal = document.getElementById("modal");
+    if (modal) modal.style.display = "none";
 }
 
-document.getElementById("modal-img").onclick = function(event) {
-    event.stopPropagation();
-};
+const modalImg = document.getElementById("modal-img");
+if (modalImg) {
+    modalImg.onclick = function(event) {
+        event.stopPropagation();
+    };
+}
 
+// ============================================
+// MOBILE MENU
+// ============================================
 function toggleMenu() {
-    document.getElementById("nav-links").classList.toggle("active");
+    const navLinks = document.getElementById("nav-links");
+    if (navLinks) navLinks.classList.toggle("active");
 }
+
+// Tutup menu saat resize ke desktop
+window.addEventListener('resize', function() {
+    if (window.innerWidth > 768) {
+        const navLinks = document.getElementById("nav-links");
+        if (navLinks) navLinks.classList.remove("active");
+    }
+});
 
 // ============================================
 // POPUP FUNCTIONS
@@ -1800,7 +1880,8 @@ function closePopup(popupId) {
 document.querySelectorAll('.popup-overlay').forEach(overlay => {
     overlay.addEventListener('click', function(e) {
         if (e.target === this && this.id !== 'popup-loading') {
-            closePopup(this.id);
+            this.classList.remove('active');
+            document.body.style.overflow = '';
         }
     });
 });
@@ -1810,15 +1891,52 @@ document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
         document.querySelectorAll('.popup-overlay.active').forEach(popup => {
             if (popup.id !== 'popup-loading') {
-                closePopup(popup.id);
+                popup.classList.remove('active');
+            }
+        });
+        document.body.style.overflow = '';
+    }
+});
+
+// ============================================
+// TOMBOL EXPLORE & CONTACT - SCROLL
+// ============================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    const exploreBtn = document.getElementById('exploreBtn');
+    const contactBtn = document.getElementById('contactBtn');
+    
+    // Tombol Explore - Scroll ke Experience/Projects
+    if (exploreBtn) {
+        exploreBtn.addEventListener('click', function() {
+            const projectsSection = document.getElementById('projects');
+            if (projectsSection) {
+                projectsSection.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    }
+    
+    // Tombol Contact - Scroll ke Contact
+    if (contactBtn) {
+        contactBtn.addEventListener('click', function() {
+            const contactSection = document.getElementById('contact');
+            if (contactSection) {
+                contactSection.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
             }
         });
     }
 });
 
 // ============================================
-// EMAILJS - DENGAN POPUP CUSTOM (TANPA ALERT)
+// EMAILJS - DENGAN POPUP CUSTOM
 // ============================================
+
 (function() {
     emailjs.init("2U49IurwTnRqNclp_");
     
@@ -1836,17 +1954,22 @@ document.addEventListener('keydown', function(e) {
         const emailInput = document.getElementById("email");
         const messageInput = document.getElementById("message");
         
+        if (!nameInput || !emailInput || !messageInput) {
+            console.error("Form elements not found!");
+            return;
+        }
+        
         const name = nameInput.value.trim();
         const email = emailInput.value.trim();
         const message = messageInput.value.trim();
         
-        // Validasi form kosong - POPUP CUSTOM
+        // Validasi form kosong
         if (!name || !email || !message) {
             showPopup('popup-empty');
             return;
         }
         
-        // Validasi email - POPUP CUSTOM
+        // Validasi email
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailPattern.test(email)) {
             showPopup('popup-email-invalid');
@@ -1896,6 +2019,8 @@ document.addEventListener('keydown', function(e) {
         });
     });
 })();
+</script>
+
 </script>
 
 
