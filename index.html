@@ -1,539 +1,556 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Ozora Portfolio</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Ozora Portfolio</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300 ;400;600;700&display=swap" rel="stylesheet">
 
-    <style>
-    *{
-        margin:0;
-        padding:0;
-        box-sizing:border-box;
-        font-family:'Poppins',sans-serif;
-        scroll-behavior:smooth;
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+    scroll-behavior:smooth;
+}
+
+body{
+    background: #0a0a0a;
+    color:white;
+    overflow-x:hidden;
+    position: relative;
+}
+
+/* Background Gradient Effect */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background: 
+        radial-gradient(ellipse at 20% 30%, rgba(76, 29, 149, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 70%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(147, 51, 234, 0.2) 0%, transparent 70%),
+        #0a0a0a;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background: 
+        radial-gradient(circle at 30% 40%, rgba(236, 72, 153, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(59, 130, 246, 0.15) 0%, transparent 40%);
+    animation: pulse 8s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* Particle Canvas */
+#particles{
+    position:fixed;
+    width:100%;
+    height:100%;
+    z-index:-1;
+}
+
+/* Navbar */
+nav{
+    position:fixed;
+    width:100%;
+    top:0;
+    backdrop-filter:blur(20px);
+    background:rgba(10, 10, 10, 0.8);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display:flex;
+    justify-content:space-between;
+    padding:15px 40px;
+    z-index:1000;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:25px;
+}
+
+nav ul li a{
+    text-decoration:none;
+    color:white;
+    transition:0.3s;
+    position: relative;
+}
+
+nav ul li a:hover{
+    color:#ec4899;
+    text-shadow:0 0 20px rgba(236, 72, 153, 0.5);
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #3b82f6, #ec4899);
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* Section */
+section{
+    min-height:100vh;
+    padding:120px 10%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+/* Card */
+.card{
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(20px);
+    border-radius:20px;
+    padding:40px;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow:0 0 30px rgba(0,0,0,0.3);
+    transition:0.4s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 40px rgba(59, 130, 246, 0.3),
+               0 0 80px rgba(147, 51, 234, 0.2);
+    border-color: rgba(255,255,255,0.2);
+}
+
+/* Button */
+.btn{
+    padding:12px 30px;
+    border-radius:30px;
+    border:none;
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #ec4899 100%);
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:hover{
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #f472b6 100%);
+    box-shadow:0 0 30px rgba(124, 58, 237, 0.5), 
+               0 0 60px rgba(236, 72, 153, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Grid */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+    margin-top:30px;
+}
+
+/* Typing effect */
+.typing{
+    background: linear-gradient(135deg, #3b82f6 0%, #ec4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size:2rem;
+    font-weight: 700;
+}
+
+/* Scroll Reveal */
+.hidden{
+    opacity:0;
+    transform:translateY(40px);
+    transition:all 1s;
+}
+
+.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* Responsive */
+@media(max-width:768px){
+    section{
+        padding:120px 5%;
+    }
+}
+
+/* Layout kiri kanan */
+.home-flex{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:50px;
+}
+
+/* Text kiri */
+.home-text{
+    flex:1;
+}
+
+/* Foto kanan */
+.profile-wrapper{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    position: relative;
+}
+
+/* Foto bulat dengan glow */
+.profile-img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    transition: 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+/* Glow effect untuk foto */
+.profile-wrapper::before {
+    content: '';
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3b82f6, #ec4899);
+    filter: blur(30px);
+    opacity: 0.4;
+    animation: glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from { opacity: 0.3; transform: scale(1); }
+    to { opacity: 0.6; transform: scale(1.1); }
+}
+
+.profile-img:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 40px rgba(59, 130, 246, 0.5),
+               0 0 80px rgba(236, 72, 153, 0.3);
+}
+
+/* Responsive HP */
+@media(max-width:768px){
+    .home-flex{
+        flex-direction:column-reverse;
+        text-align:center;
     }
 
-    body{
-        background: #0a0a0a; /* Diubah dari #0a0f1c ke hitam pekat */
-        color:white;
-        overflow-x:hidden;
-        position: relative;
+    .profile-img{
+        width:130px;
+        height:130px;
+        margin-bottom:20px;
     }
-
-    /* Background Gradient Effect - TAMBAHAN BARU */
-    body::before {
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -2;
-        background: 
-            radial-gradient(ellipse at 20% 30%, rgba(76, 29, 149, 0.4) 0%, transparent 50%),
-            radial-gradient(ellipse at 80% 70%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
-            radial-gradient(ellipse at 50% 50%, rgba(147, 51, 234, 0.2) 0%, transparent 70%),
-            #0a0a0a;
+    
+    .profile-wrapper::before {
+        width: 150px;
+        height: 150px;
     }
+}
 
-    body::after {
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -2;
-        background: 
-            radial-gradient(circle at 30% 40%, rgba(236, 72, 153, 0.15) 0%, transparent 40%),
-            radial-gradient(circle at 70% 60%, rgba(59, 130, 246, 0.15) 0%, transparent 40%);
-        animation: pulse 8s ease-in-out infinite;
+.particle {
+    position:absolute;
+    width:6px;
+    height:6px;
+    background: rgba(255,255,255,0.5);
+    border-radius:50%;
+    opacity:0.5;
+    animation:float 10s infinite linear;
+    z-index:1;
+}
+
+/* CSS Education */
+.edu-card{
+    text-align:center;
+    padding:30px;
+}
+
+#education h1{
+    margin-bottom:40px;
+}
+
+.edu-card h2{
+    background: linear-gradient(135deg, #3b82f6 0%, #ec4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom:10px;
+}
+
+.edu-card p{
+    margin-bottom:8px;
+    opacity:0.9;
+}
+
+.edu-icon{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.skill-card{
+    text-align:center;
+    padding:30px 20px;
+}
+
+.skill-img{
+    width:70px;
+    height:70px;
+    object-fit:contain;
+    margin-bottom:15px;
+    transition:0.4s;
+}
+
+.skill-card:hover .skill-img{
+    transform:scale(1.2) rotate(5deg);
+}
+
+.skill-card h3{
+    margin-top:10px;
+    font-weight:600;
+    color: white;
+}
+
+/* Experience hover */
+.exp-card{
+    cursor:pointer;
+    color: white;
+}
+
+/* ===== MODAL BACKGROUND - PERBAIKAN ===== */
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.95);
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+    backdrop-filter: blur(10px);
+    padding: 20px;
+}
+
+/* ===== MODAL IMAGE - PERBAIKAN UTAMA ===== */
+.modal-content {
+    max-width: 90vw;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 15px;
+    box-shadow: 0 0 50px rgba(59, 130, 246, 0.5), 
+                0 0 100px rgba(147, 51, 234, 0.3);
+    transition: 0.3s ease;
+    display: block;
+}
+
+/* Responsive untuk mobile */
+@media(max-width:768px){
+    .modal-content {
+        max-width: 95vw;
+        max-height: 80vh;
     }
+}
 
-    @keyframes pulse {
-        0%, 100% { opacity: 0.5; transform: scale(1); }
-        50% { opacity: 1; transform: scale(1.1); }
+/* Close button */
+.close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 10000;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    backdrop-filter: blur(10px);
+}
+
+.close:hover {
+    color: #ec4899;
+    background: rgba(236, 72, 153, 0.2);
+    transform: rotate(90deg);
+}
+
+/* Animation */
+@keyframes zoomIn{
+    from{transform:scale(0.5);opacity:0;}
+    to{transform:scale(1);opacity:1;}
+}
+
+*{
+    -webkit-tap-highlight-color: transparent;
+}
+
+.social{
+    text-decoration:none;
+    border:none;
+}
+
+#education h2{
+    background: linear-gradient(135deg, #3b82f6 0%, #ec4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+#education p{
+    color:rgba(255,255,255,0.85);
+}
+
+/* ===== TABLET ===== */
+@media(max-width:1024px){
+    .modal-content{
+        max-width: 85vw;
+        max-height: 85vh;
     }
+}
 
-    /* Particle Canvas - tetap ada tapi warna diubah */
-    #particles{
-        position:fixed;
-        width:100%;
-        height:100%;
-        z-index:-1;
+/* ===== MOBILE ===== */
+@media(max-width:768px){
+    .modal-content{
+        max-width: 95vw;
+        max-height: 80vh;
     }
+    
+    .close {
+        top: 10px;
+        right: 15px;
+        font-size: 30px;
+        width: 35px;
+        height: 35px;
+    }
+}
 
-    /* Navbar - diubah ke glassmorphism gelap */
+/* HAMBURGER */
+.menu-toggle{
+    display:none;
+    font-size:28px;
+    cursor:pointer;
+    color: white;
+}
+
+/* MOBILE NAV */
+@media (max-width: 768px){
+
     nav{
-        position:fixed;
-        width:100%;
-        top:0;
-        backdrop-filter:blur(20px);
-        background:rgba(10, 10, 10, 0.8); /* Diubah */
-        border-bottom: 1px solid rgba(255,255,255,0.05); /* Ditambah */
-        display:flex;
-        justify-content:space-between;
-        padding:15px 40px;
-        z-index:1000;
+        padding:15px 20px;
+    }
+
+    .menu-toggle{
+        display:block;
     }
 
     nav ul{
+        position:absolute;
+        top:70px;
+        right:0;
+        width:100%;
+        flex-direction:column;
+        align-items:center;
+        background:rgba(10, 10, 10, 0.95);
+        backdrop-filter:blur(20px);
+        padding:20px 0;
+        gap:20px;
+        display:none;
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    nav ul.active{
         display:flex;
-        list-style:none;
-        gap:25px;
+    }
+
+    nav ul li{
+        width:100%;
+        text-align:center;
     }
 
     nav ul li a{
-        text-decoration:none;
-        color:white;
-        transition:0.3s;
-        position: relative;
+        display:block;
+        padding:10px 0;
+        font-size:18px;
     }
-
-    /* Efek hover gradien */
-    nav ul li a:hover{
-        color:#ec4899; /* Pink */
-        text-shadow:0 0 20px rgba(236, 72, 153, 0.5);
-    }
-
-    /* Active state dengan underline gradien */
-    nav ul li a::after {
-        content: '';
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background: linear-gradient(90deg, #3b82f6, #ec4899);
-        transition: width 0.3s ease;
-    }
-
-    nav ul li a:hover::after {
-        width: 100%;
-    }
-
-    /* Section */
-    section{
-        min-height:100vh;
-        padding:120px 10%;
-        display:flex;
-        flex-direction:column;
-        justify-content:center;
-    }
-
-    /* Card - diubah ke glassmorphism dengan border subtle */
-    .card{
-        background:rgba(255,255,255,0.05); /* Sama */
-        backdrop-filter:blur(20px);
-        border-radius:20px;
-        padding:40px;
-        border: 1px solid rgba(255,255,255,0.1); /* Ditambah */
-        box-shadow:0 0 30px rgba(0,0,0,0.3); /* Diubah dari cyan ke hitam transparan */
-        transition:0.4s;
-    }
-
-    .card:hover{
-        transform:translateY(-10px);
-        box-shadow:0 0 40px rgba(59, 130, 246, 0.3), /* Biru */
-                   0 0 80px rgba(147, 51, 234, 0.2); /* Ungu */
-        border-color: rgba(255,255,255,0.2);
-    }
-
-    /* Button - diubah ke gradien ungu-pink */
-    .btn{
-        padding:12px 30px;
-        border-radius:30px;
-        border:none;
-        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #ec4899 100%); /* Gradien ungu ke pink */
-        color:white; /* Diubah dari black ke white */
-        font-weight:600;
-        cursor:pointer;
-        transition:0.3s;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .btn:hover{
-        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #f472b6 100%);
-        box-shadow:0 0 30px rgba(124, 58, 237, 0.5), 
-                   0 0 60px rgba(236, 72, 153, 0.3);
-        transform: translateY(-2px);
-    }
-
-    /* Grid */
-    .grid{
-        display:grid;
-        grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-        gap:30px;
-        margin-top:30px;
-    }
-
-    /* Typing effect - diubah ke gradien */
-    .typing{
-        background: linear-gradient(135deg, #3b82f6 0%, #ec4899 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        font-size:2rem;
-        font-weight: 700;
-    }
-
-    /* Scroll Reveal */
-    .hidden{
-        opacity:0;
-        transform:translateY(40px);
-        transition:all 1s;
-    }
-
-    .show{
-        opacity:1;
-        transform:translateY(0);
-    }
-
-    /* Responsive */
-    @media(max-width:768px){
-        section{
-            padding:120px 5%;
-        }
-    }
-
-    /* Layout kiri kanan */
-    .home-flex{
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
-        gap:50px;
-    }
-
-    /* Text kiri */
-    .home-text{
-        flex:1;
-    }
-
-    /* Foto kanan - ditambah glow effect */
-    .profile-wrapper{
-        flex:1;
-        display:flex;
-        justify-content:center;
-        position: relative;
-    }
-
-    /* Foto bulat dengan glow */
-    .profile-img {
-        width: 200px;
-        height: 200px;
-        object-fit: cover;
-        border-radius: 50%;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        transition: 0.3s ease;
-        position: relative;
-        z-index: 1;
-    }
-
-    /* Glow effect untuk foto */
-    .profile-wrapper::before {
-        content: '';
-        position: absolute;
-        width: 220px;
-        height: 220px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #3b82f6, #ec4899);
-        filter: blur(30px);
-        opacity: 0.4;
-        animation: glow 3s ease-in-out infinite alternate;
-    }
-
-    @keyframes glow {
-        from { opacity: 0.3; transform: scale(1); }
-        to { opacity: 0.6; transform: scale(1.1); }
-    }
-
-    .profile-img:hover{
-        transform:scale(1.05);
-        box-shadow:0 0 40px rgba(59, 130, 246, 0.5),
-                   0 0 80px rgba(236, 72, 153, 0.3);
-    }
-
-    /* Responsive HP */
-    @media(max-width:768px){
-        .home-flex{
-            flex-direction:column-reverse;
-            text-align:center;
-        }
-
-        .profile-img{
-            width:130px;
-            height:130px;
-            margin-bottom:20px;
-        }
-        
-        .profile-wrapper::before {
-            width: 150px;
-            height: 150px;
-        }
-    }
-
-    .particle {
-        position:absolute;
-        width:6px;
-        height:6px;
-        background: rgba(255,255,255,0.5); /* Diubah dari cyan ke putih */
-        border-radius:50%;
-        opacity:0.5;
-        animation:float 10s infinite linear;
-        z-index:1;
-    }
-
-    /* CSS Education - warna heading diubah */
-    .edu-card{
-        text-align:center;
-        padding:30px;
-    }
-
-    #education h1{
-        margin-bottom:40px;
-    }
-
-    .edu-card h2{
-        background: linear-gradient(135deg, #3b82f6 0%, #ec4899 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        margin-bottom:10px;
-    }
-
-    .edu-card p{
-        margin-bottom:8px;
-        opacity:0.9;
-    }
-
-    .edu-icon{
-        width:80px;
-        height:80px;
-        border-radius:50%;
-        object-fit:cover;
-    }
-
-    .skill-card{
-        text-align:center;
-        padding:30px 20px;
-    }
-
-    .skill-img{
-        width:70px;
-        height:70px;
-        object-fit:contain;
-        margin-bottom:15px;
-        transition:0.4s;
-    }
-
-    .skill-card:hover .skill-img{
-        transform:scale(1.2) rotate(5deg);
-    }
-
-    .skill-card h3{
-        margin-top:10px;
-        font-weight:600;
-        color: white;
-    }
-
-    /* Experience hover */
-    .exp-card{
-        cursor:pointer;
-        color: white;
-    }
-
-    /* ===== MODAL BACKGROUND ===== */
-    .modal{
-        display:none;
-        position:fixed;
-        inset:0;
-        background:rgba(0,0,0,0.9); /* Lebih gelap */
-        align-items:center;
-        justify-content:center;
-        z-index:9999;
-        backdrop-filter: blur(10px);
-    }
-
-    /* ===== MODAL IMAGE IMPROVED ===== */
-    .modal-content {
-        width: 70%;
-        max-width: 800px;
-        max-height: 70vh;
-        object-fit: contain;
-        border-radius: 15px;
-        box-shadow: 0 0 50px rgba(59, 130, 246, 0.5), 
-                    0 0 100px rgba(147, 51, 234, 0.3);
-        transition: 0.3s ease;
-    }
-
-    /* Responsive HP */
-    @media(max-width:768px){
-        .modal-content {
-            width: 90%;
-            max-width: 400px;
-            max-height: 60vh;
-        }
-    }
-
-    /* Close button */
-    .close {
-        position: absolute;
-        top: 20px;
-        right: 30px;
-        font-size: 30px;
-        color: white;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-    
-    .close:hover {
-        color: #ec4899;
-        text-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
-    }
-
-    /* Animation */
-    @keyframes zoomIn{
-        from{transform:scale(0.5);opacity:0;}
-        to{transform:scale(1);opacity:1;}
-    }
-
-    *{
-        -webkit-tap-highlight-color: transparent;
-    }
-
-    .social{
-        text-decoration:none;
-        border:none;
-    }
-
-    #education h2{
-        background: linear-gradient(135deg, #3b82f6 0%, #ec4899 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-
-    #education p{
-        color:rgba(255,255,255,0.85);
-    }
-
-    /* ===== TABLET ===== */
-    @media(max-width:1024px){
-        .modal-content{
-            width:80%;
-            max-width:650px;
-            max-height:80vh;
-        }
-    }
-
-    /* ===== MOBILE ===== */
-    @media(max-width:768px){
-        .modal-content{
-            width:92%;
-            max-width:400px;
-            max-height:70vh;
-        }
-    }
-
-    /* HAMBURGER */
-    .menu-toggle{
-        display:none;
-        font-size:28px;
-        cursor:pointer;
-        color: white;
-    }
-
-    /* MOBILE NAV */
-    @media (max-width: 768px){
-
-        nav{
-            padding:15px 20px;
-        }
-
-        .menu-toggle{
-            display:block;
-        }
-
-        nav ul{
-            position:absolute;
-            top:70px;
-            right:0;
-            width:100%;
-            flex-direction:column;
-            align-items:center;
-            background:rgba(10, 10, 10, 0.95); /* Diubah */
-            backdrop-filter:blur(20px);
-            padding:20px 0;
-            gap:20px;
-            display:none;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        nav ul.active{
-            display:flex;
-        }
-
-        nav ul li{
-            width:100%;
-            text-align:center;
-        }
-
-        nav ul li a{
-            display:block;
-            padding:10px 0;
-            font-size:18px;
-        }
-    }
-
-    /* Tambahan: Style untuk section headings */
-    section h1 {
-        background: linear-gradient(135deg, white 0%, #e0e7ff 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        font-size: 2.5rem;
-        margin-bottom: 20px;
-    }
-
-    /* Style untuk about section */
-    .about-grid {
-        display: grid;
-        gap: 30px;
-    }
-
-    .about-grid .card h2 {
-        background: linear-gradient(135deg, #3b82f6 0%, #ec4899 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        margin-bottom: 15px;
-    }
-
-    /* Contact form styling */
-    #contact input, #contact textarea {
-        background: rgba(255,255,255,0.05);
-        border: 1px solid rgba(255,255,255,0.1);
-        color: white;
-    }
-    
-    #contact input::placeholder, #contact textarea::placeholder {
-        color: rgba(255,255,255,0.5);
-    }
-    
-    #contact input:focus, #contact textarea:focus {
-        outline: none;
-        border-color: rgba(59, 130, 246, 0.5);
-        box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
-    }
-
-    /* Hilangkan ikon resize di textarea */
-textarea {
-    resize: none; /* 🔥 Menonaktifkan fitur resize */
 }
+
+/* Tambahan: Style untuk section headings */
+section h1 {
+    background: linear-gradient(135deg, white 0%, #e0e7ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+/* Style untuk about section */
+.about-grid {
+    display: grid;
+    gap: 30px;
+}
+
+.about-grid .card h2 {
+    background: linear-gradient(135deg, #3b82f6 0%, #ec4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 15px;
+}
+
+/* Contact form styling */
+#contact input, #contact textarea {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: white;
+}
+
+#contact input::placeholder, #contact textarea::placeholder {
+    color: rgba(255,255,255,0.5);
+}
+
+#contact input:focus, #contact textarea:focus {
+    outline: none;
+    border-color: rgba(59, 130, 246, 0.5);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+}
+
+/* Hilangkan ikon resize di textarea */
+textarea {
+    resize: none;
+}
+
 /* ============================================
    HAMBURGER MENU - PERBAIKAN
    ============================================ */
@@ -566,21 +583,21 @@ textarea {
     }
 
     .menu-toggle {
-        display: block; /* Tampilkan hamburger di mobile */
+        display: block;
     }
 
     nav ul {
-        position: fixed; /* Ubah dari absolute ke fixed */
-        top: 60px; /* Sesuaikan dengan tinggi navbar */
-        left: 0; /* Ubah dari right ke left untuk full width */
+        position: fixed;
+        top: 60px;
+        left: 0;
         width: 100%;
         flex-direction: column;
         align-items: center;
-        background: rgba(10, 10, 10, 0.98); /* Lebih gelap */
+        background: rgba(10, 10, 10, 0.98);
         backdrop-filter: blur(20px);
         padding: 30px 0;
         gap: 25px;
-        display: none; /* Sembunyikan default */
+        display: none;
         border-top: 1px solid rgba(255, 255, 255, 0.1);
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -589,13 +606,11 @@ textarea {
         overflow-y: auto;
     }
 
-    /* Class untuk menampilkan menu */
     nav ul.active {
-        display: flex !important; /* Pakai !important untuk override */
+        display: flex !important;
         animation: slideDown 0.3s ease;
     }
 
-    /* Animasi slide down */
     @keyframes slideDown {
         from {
             opacity: 0;
@@ -634,7 +649,7 @@ textarea {
     }
     
     nav ul {
-        display: flex !important; /* Selalu tampil di desktop */
+        display: flex !important;
     }
 }
 
@@ -917,14 +932,14 @@ textarea {
     /* Form Mobile */
     #contact input,
     #contact textarea {
-        font-size: 16px; /* Mencegah zoom di iOS */
+        font-size: 16px;
         padding: 12px;
     }
     
     /* Modal Mobile */
     .modal-content {
-        width: 95%;
-        max-height: 60vh;
+        max-width: 95vw;
+        max-height: 80vh;
     }
     
     .close {
@@ -1377,407 +1392,497 @@ footer {
     }
 }
 
+/* ============================================
+   POPUP STYLES - WARNING, ERROR, SUCCESS, LOADING
+   ============================================ */
+
+/* Warning Icon */
+.popup-icon-warning {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    color: white;
+    box-shadow: 0 10px 30px rgba(245, 158, 11, 0.4);
+    animation: bounceIn 0.5s ease;
+}
+
+/* Error Icon */
+.popup-icon-error {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    color: white;
+    box-shadow: 0 10px 30px rgba(239, 68, 68, 0.4);
+    animation: shake 0.5s ease;
+}
+
+/* Success Icon */
+.popup-icon-success {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    color: white;
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+    animation: bounceIn 0.5s ease;
+}
+
+/* Loading Spinner */
+.popup-spinner {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 20px;
+    border: 4px solid rgba(255,255,255,0.1);
+    border-top-color: #3b82f6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.popup-small {
+    padding: 40px 30px;
+}
+
+.btn-warning {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+}
+
+.btn-error {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+}
+
+.popup-error-detail {
+    color: rgba(239, 68, 68, 0.8);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
 </style>
-    </head>
+</head>
 
-    <body>
+<body>
 
-    <canvas id="particles"></canvas>
+<canvas id="particles"></canvas>
 
-    <nav>
-    <h2>Ozora Portofolio</h2>
+<nav>
+<h2>Ozora Portofolio</h2>
 
-    <div class="menu-toggle" onclick="toggleMenu()">
-        ☰
-    </div>
+<div class="menu-toggle" onclick="toggleMenu()">
+    ☰
+</div>
 
-    <ul id="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Experience</a></li>
-        <li><a href="#certificates">Certificates</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
+<ul id="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Experience</a></li>
+    <li><a href="#certificates">Certificates</a></li>
+    <li><a href="#contact">Contact</a></li>
+</ul>
 </nav>
 
-    <!-- HOME -->
-    <section id="home">
-    <div class="home-flex card hidden">
+<!-- HOME -->
+<section id="home">
+<div class="home-flex card hidden">
 
-        <div class="home-text">
-        <h1>Hello, I'm Ozora Yericho Simanjuntak</h1>
-        <h2 class="typing"></h2>
-        <p>Software Engineering | Design UI | Creative Thinking </p>
-        <br>
-        <div class="btn-wrapper">
-    <button class="btn" id="exploreBtn" type="button">Explore</button></div>
+    <div class="home-text">
+    <h1>Hello, I'm Ozora Yericho Simanjuntak</h1>
+    <h2 class="typing"></h2>
+    <p>Software Engineering | Design UI | Creative Thinking </p>
+    <br>
+    <div class="btn-wrapper">
+<button class="btn" id="exploreBtn" type="button">Explore</button></div>
+    </div>
+
+    <div class="profile-wrapper">
+    <img src="img/weF.jpeg" class="profile-img">
+    </div>
+
+</div>
+</section>
+
+<!--About -->
+<section id="about">
+    <h1 style="margin-bottom:40px;">About</h1>
+
+    <div class="about-grid">
+
+        <div class="card hidden">
+            <h2>About me</h2>
+            <p>
+               Saya merupakan mahasiswa BINUS University yang berfokus pada Software Engineering dan memiliki ketertarikan kuat terhadap dunia teknologi 
+               serta pengembangan sistem yang inovatif. Dengan semangat belajar yang tinggi dan pola pikir growth mindset, saya terus mengasah kemampuan dalam pemrograman, analisis masalah, serta pengembangan solusi digital yang efektif dan efisien.
+            </p>
+            <p>
+                Saya percaya bahwa konsistensi, kreativitas, dan kemampuan beradaptasi adalah kunci untuk berkembang di era teknologi yang dinamis. 
+                Melalui setiap proyek dan pengalaman yang saya jalani, saya berkomitmen untuk terus bertumbuh dan memberikan kontribusi nyata di dunia teknologi.
+            </p>
         </div>
 
-        <div class="profile-wrapper">
-        <img src="img/weF.jpeg" class="profile-img">
+        <div class="card hidden">
+            <h2>🎯 Career Goal</h2>
+            <p>
+            To become a professional Software Engineer and build impactful digital solutions.
+            </p>
+            <p>
+            </p>
+        </div>
+
+        <div class="card hidden">
+            <h2>💡 Passion</h2>
+            <p>
+                I am actively involved in programming and digital marketing, and I continuously develop my skills in various programming languages.
+            <p>
+                AI, Software Development, UI/UX Design, and Emerging Technologies.  
+            </p>
         </div>
 
     </div>
-    </section>
+</section>
 
-    <!--About -->
-    <section id="about">
-        <h1 style="margin-bottom:40px;">About</h1>
+<section id="education">
+<h1 class="hidden">Education</h1>
 
-        <div class="about-grid">
+<div class="grid">
 
-            <div class="card hidden">
-                <h2>About me</h2>
-                <p>
-                   Saya merupakan mahasiswa BINUS University yang berfokus pada Software Engineering dan memiliki ketertarikan kuat terhadap dunia teknologi 
-                   serta pengembangan sistem yang inovatif. Dengan semangat belajar yang tinggi dan pola pikir growth mindset, saya terus mengasah kemampuan dalam pemrograman, analisis masalah, serta pengembangan solusi digital yang efektif dan efisien.
-                </p>
-                <p>
-                    Saya percaya bahwa konsistensi, kreativitas, dan kemampuan beradaptasi adalah kunci untuk berkembang di era teknologi yang dinamis. 
-                    Melalui setiap proyek dan pengalaman yang saya jalani, saya berkomitmen untuk terus bertumbuh dan memberikan kontribusi nyata di dunia teknologi.
-                </p>
-            </div>
-
-            <div class="card hidden">
-                <h2>🎯 Career Goal</h2>
-                <p>
-                To become a professional Software Engineer and build impactful digital solutions.
-                </p>
-                <p>
-                </p>
-            </div>
-
-            <div class="card hidden">
-                <h2>💡 Passion</h2>
-                <p>
-                    I am actively involved in programming and digital marketing, and I continuously develop my skills in various programming languages.
-                <p>
-                    AI, Software Development, UI/UX Design, and Emerging Technologies.  
-                </p>
-            </div>
-
-        </div>
-    </section>
-
-    <section id="education">
-    <h1 class="hidden">Education</h1>
-
-    <div class="grid">
-
-        <div class="card hidden edu-card">
-            <h2>
-        <img src="img/nus.png" class="edu-icon">
-    </h2>
-            <h2>BINUS University</h2>
-            <p>S1 - Computer Science</p>
-            <p>2025 - Sekarang</p>
-        </div>
-
-        <div class="card hidden edu-card">
-            <h2>
-        <img src="img/budimulia.png" class="edu-icon">
-    </h2>
-            <h2>SMA BUDI MULIA PEMATANGSIANTAR</h2>
-            <p>Jurusan IPA</p>
-            <p>2022 - 2025</p>
-        </div>
-
-        
-        <div class="card hidden edu-card">
-            <h2>
-        <img src="img/bt.png" class="edu-icon">
-    </h2>
-            <h2>SMP BINTANG TIMUR PEMATANGSIANTAR</h2>
-            <p>Kurikulum - 13</p>
-            <p>2019 - 2022</p>
-        </div>
-
-    </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section id="skills">
-    <h1 class="hidden">My Skills</h1>
-
-    <div class="grid">
-
-        <div class="card hidden skill-card">
-            <img src="img/html.jpeg" class="skill-img">
-            <h3>HTML</h3>
-        </div>
-
-        <div class="card hidden skill-card">
-            <img src="img/ss.jpeg" class="skill-img">
-            <h3>CSS</h3>
-        </div>
-
-        <div class="card hidden skill-card">
-            <img src="img/vscode.jpeg" class="skill-img">
-            <h3>Visual Studio</h3>
-        </div>
-
-        <div class="card hidden skill-card">
-            <img src="img/python.jpeg" class="skill-img">
-            <h3>Python</h3>
-        </div>
-
-        <div class="card hidden skill-card">
-            <img src="img/cpp_logo.png" class="skill-img">
-            <h3>C++</h3>
-        </div>
-
-        <div class="card hidden skill-card">
-            <img src="img/canva.jpeg" class="skill-img">
-            <h3>Canva</h3>
-        </div>
-
-        <div class="card hidden skill-card">
-            <img src="img/word.jpeg" class="skill-img">
-            <h3>Microsoft Word</h3>
-        </div>
-
-        <div class="card hidden skill-card">
-            <img src="img/excel.jpeg" class="skill-img">
-            <h3>Microsoft Excel</h3>
-        </div>
-
-    </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section id="projects">
-    <h1 class="hidden">Experience</h1>
-
-    <div class="grid">
-
-    <div class="card hidden exp-card" onclick="openModal('img/blu.jpeg')">
-    blu Ambassador of Binus University 2025
+    <div class="card hidden edu-card">
+        <h2>
+    <img src="img/nus.png" class="edu-icon">
+</h2>
+        <h2>BINUS University</h2>
+        <p>S1 - Computer Science</p>
+        <p>2025 - Sekarang</p>
     </div>
 
-    <div class="card hidden exp-card" onclick="openModal('img/bend.jpeg')">
-    3rd Rector cup Band Binus University 2025
+    <div class="card hidden edu-card">
+        <h2>
+    <img src="img/budimulia.png" class="edu-icon">
+</h2>
+        <h2>SMA BUDI MULIA PEMATANGSIANTAR</h2>
+        <p>Jurusan IPA</p>
+        <p>2022 - 2025</p>
     </div>
 
-    <div class="card hidden exp-card" onclick="openModal('img/bc.jpeg')">
-    3rd Futsal Burn Cup Binus @BEKASI
+    
+    <div class="card hidden edu-card">
+        <h2>
+    <img src="img/bt.png" class="edu-icon">
+</h2>
+        <h2>SMP BINTANG TIMUR PEMATANGSIANTAR</h2>
+        <p>Kurikulum - 13</p>
+        <p>2019 - 2022</p>
     </div>
 
-    <div class="card hidden exp-card" onclick="openModal('img/wepest.jpeg')">
-    Performer WeFest Inauguration BINUS University 2025
+</div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+<h1 class="hidden">My Skills</h1>
+
+<div class="grid">
+
+    <div class="card hidden skill-card">
+        <img src="img/html.jpeg" class="skill-img">
+        <h3>HTML</h3>
     </div>
 
-    <div class="card hidden exp-card" onclick="openModal('img/stf.jpeg')">
-    Committee of Student Talent Fest BINUS University 2025
+    <div class="card hidden skill-card">
+        <img src="img/ss.jpeg" class="skill-img">
+        <h3>CSS</h3>
     </div>
 
-     <div class="card hidden exp-card">
-    Best Keyboardist 2024 - 2025 Budi Mulia 
+    <div class="card hidden skill-card">
+        <img src="img/vscode.jpeg" class="skill-img">
+        <h3>Visual Studio</h3>
     </div>
 
-     <div class="card hidden exp-card">
-    3rd Sultan Agung Music Competition Pematangsiantar 2025
+    <div class="card hidden skill-card">
+        <img src="img/python.jpeg" class="skill-img">
+        <h3>Python</h3>
     </div>
 
-    </div>
-    </section>
-
-    <!-- Modal -->
-    <div id="modal" class="modal" onclick="closeModal()">
-        <span class="close">&times;</span>
-        <img class="modal-content" id="modal-img">
+    <div class="card hidden skill-card">
+        <img src="img/cpp_logo.png" class="skill-img">
+        <h3>C++</h3>
     </div>
 
-    <!-- CERTIFICATES -->
-    <section id="certificates">
-    <h1 class="hidden">Certificates</h1>
-    <div class="grid">
-   <div class="card hidden">
-    <img src="img/dicoding.jpeg" width="100%" onclick="openModal('img/dicoding.jpeg')">
+    <div class="card hidden skill-card">
+        <img src="img/canva.jpeg" class="skill-img">
+        <h3>Canva</h3>
+    </div>
+
+    <div class="card hidden skill-card">
+        <img src="img/word.jpeg" class="skill-img">
+        <h3>Microsoft Word</h3>
+    </div>
+
+    <div class="card hidden skill-card">
+        <img src="img/excel.jpeg" class="skill-img">
+        <h3>Microsoft Excel</h3>
+    </div>
+
+</div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+<h1 class="hidden">Experience</h1>
+
+<div class="grid">
+
+<div class="card hidden exp-card" onclick="openModal('img/blu.jpeg')">
+blu Ambassador of Binus University 2025
 </div>
 
-     <div class="card hidden">
-    <img src="img/burncup.jpeg" width="100%" onclick="openModal('img/burncup.jpeg')">
+<div class="card hidden exp-card" onclick="openModal('img/bend.jpeg')">
+3rd Rector cup Band Binus University 2025
 </div>
 
-     <div class="card hidden">
-    <img src="img/python.png" width="100%" onclick="openModal('img/python.png')">
+<div class="card hidden exp-card" onclick="openModal('img/bc.jpeg')">
+3rd Futsal Burn Cup Binus @BEKASI
 </div>
 
-     <div class="card hidden">
-    <img src="img/Screenshot 2026-02-26 215103.png" width="100%" onclick="openModal('img/Screenshot 2026-02-26 215103.png')">
+<div class="card hidden exp-card" onclick="openModal('img/wepest.jpeg')">
+Performer WeFest Inauguration BINUS University 2025
 </div>
 
-     <div class="card hidden">
-    <img src="img/kpk.jpeg" width="100%" onclick="openModal('img/kpk.jpeg')">
+<div class="card hidden exp-card" onclick="openModal('img/stf.jpeg')">
+Committee of Student Talent Fest BINUS University 2025
 </div>
 
-     <div class="card hidden">
-    <img src="img/bslc.jpeg" width="100%" onclick="openModal('img/bslc.jpeg')">
+ <div class="card hidden exp-card">
+Best Keyboardist 2024 - 2025 Budi Mulia 
 </div>
 
-     <div class="card hidden">
-    <img src="img/ekno.jpeg" width="100%" onclick="openModal('img/ekno.jpeg')">
+ <div class="card hidden exp-card">
+3rd Sultan Agung Music Competition Pematangsiantar 2025
 </div>
 
-     <div class="card hidden">
-    <img src="img/coding.jpeg" width="100%" onclick="openModal('img/coding.jpeg')">
+</div>
+</section>
+
+<!-- Modal - PERBAIKAN -->
+<div id="modal" class="modal" onclick="closeModal()">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modal-img">
 </div>
 
-     <div class="card hidden">
-    <img src="img/multimedia.png" width="100%" onclick="openModal('img/multimedia.png')">
+<!-- CERTIFICATES -->
+<section id="certificates">
+<h1 class="hidden">Certificates</h1>
+<div class="grid">
+<div class="card hidden">
+<img src="img/dicoding.jpeg" width="100%" onclick="openModal('img/dicoding.jpeg')">
 </div>
 
-    </section>
+ <div class="card hidden">
+<img src="img/burncup.jpeg" width="100%" onclick="openModal('img/burncup.jpeg')">
+</div>
 
-    <!-- CONTACT -->
-   <!-- CONTACT -->
+ <div class="card hidden">
+<img src="img/python.png" width="100%" onclick="openModal('img/python.png')">
+</div>
+
+ <div class="card hidden">
+<img src="img/Screenshot 2026-02-26 215103.png" width="100%" onclick="openModal('img/Screenshot 2026-02-26 215103.png')">
+</div>
+
+ <div class="card hidden">
+<img src="img/kpk.jpeg" width="100%" onclick="openModal('img/kpk.jpeg')">
+</div>
+
+ <div class="card hidden">
+<img src="img/bslc.jpeg" width="100%" onclick="openModal('img/bslc.jpeg')">
+</div>
+
+ <div class="card hidden">
+<img src="img/ekno.jpeg" width="100%" onclick="openModal('img/ekno.jpeg')">
+</div>
+
+ <div class="card hidden">
+<img src="img/coding.jpeg" width="100%" onclick="openModal('img/coding.jpeg')">
+</div>
+
+ <div class="card hidden">
+<img src="img/multimedia.png" width="100%" onclick="openModal('img/multimedia.png')">
+</div>
+
+</section>
+
+<!-- CONTACT -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <section id="contact">
-    <div class="card hidden">
-        <h1>Contact Me</h1>
-        <br>
-        
-        <!-- Social Media Icons -->
-        <div class="social-links">
-            <a href="https://wa.me/6281260037606" target="_blank" class="social-btn whatsapp" title="WhatsApp">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="https://instagram.com/ozorayericho" target="_blank" class="social-btn instagram" title="Instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://linkedin.com/in/ozora-yericho-simanjuntak-1330413b3" target="_blank" class="social-btn linkedin" title="LinkedIn">
-                <i class="fab fa-linkedin-in"></i>
-            </a>
-        </div>
-        
-        <br><br>
-        
-        <input type="text" id="name" placeholder="Your Name" style="width:100%;padding:10px;margin-bottom:10px;border-radius:10px;border:none;">
-        
-        <input type="email" id="email" placeholder="Your Email" style="width:100%;padding:10px;margin-bottom:10px;border-radius:10px;border:none;">
-        
-        <textarea id="message" placeholder="Your Message" style="width:100%;padding:10px;border-radius:10px;border:none;resize:none;min-height:100px;"></textarea>
-        
-        <br><br>
-        <button id="sendBtn" class="btn">Send Message</button>
-        
-
-        <!-- POPUP EXPLORE -->
-<div id="popup-explore" class="popup-overlay">
-    <div class="popup-container" style="max-width: 450px; padding: 40px 35px;">
-        <h3 style="font-size: 1.6rem; margin-bottom: 25px; color: white; font-weight: 700; background: linear-gradient(135deg, #3b82f6 0%, #ec4899 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Jelajahi Portfolio Saya 🚀</h3>
-        
-        <div style="display: grid; gap: 15px; margin-bottom: 30px;">
-            <a href="#about" onclick="closePopup('popup-explore')" style="display: flex; align-items: center; gap: 15px; padding: 15px 20px; background: rgba(255,255,255,0.05); border-radius: 12px; text-decoration: none; color: white; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1);">
-                <div style="width: 45px; height: 45px; background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px;">
-                    <i class="fas fa-user"></i>
-                </div>
-                <div style="text-align: left;">
-                    <div style="font-weight: 600; font-size: 1rem;">About Me</div>
-                    <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Kenali saya lebih dekat</div>
-                </div>
-                <i class="fas fa-chevron-right" style="margin-left: auto; color: rgba(255,255,255,0.4);"></i>
-            </a>
-            
-            <a href="#projects" onclick="closePopup('popup-explore')" style="display: flex; align-items: center; gap: 15px; padding: 15px 20px; background: rgba(255,255,255,0.05); border-radius: 12px; text-decoration: none; color: white; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1);">
-                <div style="width: 45px; height: 45px; background: linear-gradient(135deg, #ec4899 0%, #f59e0b 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px;">
-                    <i class="fas fa-trophy"></i>
-                </div>
-                <div style="text-align: left;">
-                    <div style="font-weight: 600; font-size: 1rem;">Experience</div>
-                    <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Lihat pengalaman & prestasi</div>
-                </div>
-                <i class="fas fa-chevron-right" style="margin-left: auto; color: rgba(255,255,255,0.4);"></i>
-            </a>
-            
-            <a href="#skills" onclick="closePopup('popup-explore')" style="display: flex; align-items: center; gap: 15px; padding: 15px 20px; background: rgba(255,255,255,0.05); border-radius: 12px; text-decoration: none; color: white; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1);">
-                <div style="width: 45px; height: 45px; background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px;">
-                    <i class="fas fa-code"></i>
-                </div>
-                <div style="text-align: left;">
-                    <div style="font-weight: 600; font-size: 1rem;">Skills</div>
-                    <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Teknologi yang dikuasai</div>
-                </div>
-                <i class="fas fa-chevron-right" style="margin-left: auto; color: rgba(255,255,255,0.4);"></i>
-            </a>
-            
-            <a href="#certificates" onclick="closePopup('popup-explore')" style="display: flex; align-items: center; gap: 15px; padding: 15px 20px; background: rgba(255,255,255,0.05); border-radius: 12px; text-decoration: none; color: white; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1);">
-                <div style="width: 45px; height: 45px; background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px;">
-                    <i class="fas fa-certificate"></i>
-                </div>
-                <div style="text-align: left;">
-                    <div style="font-weight: 600; font-size: 1rem;">Certificates</div>
-                    <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Sertifikat & penghargaan</div>
-                </div>
-                <i class="fas fa-chevron-right" style="margin-left: auto; color: rgba(255,255,255,0.4);"></i>
-            </a>
-        </div>
-        
-        <button onclick="closePopup('popup-explore')" style="background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); padding: 12px 30px; border-radius: 25px; cursor: pointer; font-weight: 500; transition: 0.3s;">
-            Tutup
-        </button>
+<div class="card hidden">
+    <h1>Contact Me</h1>
+    <br>
+    
+    <!-- Social Media Icons -->
+    <div class="social-links">
+        <a href="https://wa.me/6281260037606" target="_blank" class="social-btn whatsapp" title="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://instagram.com/ozorayericho" target="_blank" class="social-btn instagram" title="Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://linkedin.com/in/ozora-yericho-simanjuntak-1330413b3" target="_blank" class="social-btn linkedin" title="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+        </a>
     </div>
+    
+    <br><br>
+    
+    <input type="text" id="name" placeholder="Your Name" style="width:100%;padding:10px;margin-bottom:10px;border-radius:10px;border:none;">
+    
+    <input type="email" id="email" placeholder="Your Email" style="width:100%;padding:10px;margin-bottom:10px;border-radius:10px;border:none;">
+    
+    <textarea id="message" placeholder="Your Message" style="width:100%;padding:10px;border-radius:10px;border:none;resize:none;min-height:100px;"></textarea>
+    
+    <br><br>
+    <button id="sendBtn" class="btn">Send Message</button>
+    
+
+    <!-- POPUP EXPLORE -->
+<div id="popup-explore" class="popup-overlay">
+<div class="popup-container" style="max-width: 450px; padding: 40px 35px;">
+    <h3 style="font-size: 1.6rem; margin-bottom: 25px; color: white; font-weight: 700; background: linear-gradient(135deg, #3b82f6 0%, #ec4899 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Jelajahi Portfolio Saya 🚀</h3>
+    
+    <div style="display: grid; gap: 15px; margin-bottom: 30px;">
+        <a href="#about" onclick="closePopup('popup-explore')" style="display: flex; align-items: center; gap: 15px; padding: 15px 20px; background: rgba(255,255,255,0.05); border-radius: 12px; text-decoration: none; color: white; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1);">
+            <div style="width: 45px; height: 45px; background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+                <i class="fas fa-user"></i>
+            </div>
+            <div style="text-align: left;">
+                <div style="font-weight: 600; font-size: 1rem;">About Me</div>
+                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Kenali saya lebih dekat</div>
+            </div>
+            <i class="fas fa-chevron-right" style="margin-left: auto; color: rgba(255,255,255,0.4);"></i>
+        </a>
+        
+        <a href="#projects" onclick="closePopup('popup-explore')" style="display: flex; align-items: center; gap: 15px; padding: 15px 20px; background: rgba(255,255,255,0.05); border-radius: 12px; text-decoration: none; color: white; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1);">
+            <div style="width: 45px; height: 45px; background: linear-gradient(135deg, #ec4899 0%, #f59e0b 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+                <i class="fas fa-trophy"></i>
+            </div>
+            <div style="text-align: left;">
+                <div style="font-weight: 600; font-size: 1rem;">Experience</div>
+                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Lihat pengalaman & prestasi</div>
+            </div>
+            <i class="fas fa-chevron-right" style="margin-left: auto; color: rgba(255,255,255,0.4);"></i>
+        </a>
+        
+        <a href="#skills" onclick="closePopup('popup-explore')" style="display: flex; align-items: center; gap: 15px; padding: 15px 20px; background: rgba(255,255,255,0.05); border-radius: 12px; text-decoration: none; color: white; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1);">
+            <div style="width: 45px; height: 45px; background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+                <i class="fas fa-code"></i>
+            </div>
+            <div style="text-align: left;">
+                <div style="font-weight: 600; font-size: 1rem;">Skills</div>
+                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Teknologi yang dikuasai</div>
+            </div>
+            <i class="fas fa-chevron-right" style="margin-left: auto; color: rgba(255,255,255,0.4);"></i>
+        </a>
+        
+        <a href="#certificates" onclick="closePopup('popup-explore')" style="display: flex; align-items: center; gap: 15px; padding: 15px 20px; background: rgba(255,255,255,0.05); border-radius: 12px; text-decoration: none; color: white; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1);">
+            <div style="width: 45px; height: 45px; background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+                <i class="fas fa-certificate"></i>
+            </div>
+            <div style="text-align: left;">
+                <div style="font-weight: 600; font-size: 1rem;">Certificates</div>
+                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Sertifikat & penghargaan</div>
+            </div>
+            <i class="fas fa-chevron-right" style="margin-left: auto; color: rgba(255,255,255,0.4);"></i>
+        </a>
+    </div>
+    
+    <button onclick="closePopup('popup-explore')" style="background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); padding: 12px 30px; border-radius: 25px; cursor: pointer; font-weight: 500; transition: 0.3s;">
+        Tutup
+    </button>
+</div>
 </div>
 
-        <!-- POPUP FORM KOSONG -->
+    <!-- POPUP FORM KOSONG -->
 <div id="popup-empty" class="popup-overlay">
-    <div class="popup-container">
-        <div class="popup-icon-warning">
-            <i class="fas fa-exclamation"></i>
-        </div>
-        <h3 class="popup-title">Form Belum Lengkap!</h3>
-        <p class="popup-message">Mohon isi semua field yang tersedia.<br>Nama, Email, dan Pesan wajib diisi.</p>
-        <button class="popup-btn btn-warning" onclick="closePopup('popup-empty')">Oke, Mengerti</button>
+<div class="popup-container">
+    <div class="popup-icon-warning">
+        <i class="fas fa-exclamation"></i>
     </div>
+    <h3 class="popup-title">Form Belum Lengkap!</h3>
+    <p class="popup-message">Mohon isi semua field yang tersedia.<br>Nama, Email, dan Pesan wajib diisi.</p>
+    <button class="popup-btn btn-warning" onclick="closePopup('popup-empty')">Oke, Mengerti</button>
+</div>
 </div>
 
 <!-- POPUP EMAIL INVALID -->
 <div id="popup-email-invalid" class="popup-overlay">
-    <div class="popup-container">
-        <div class="popup-icon-error">
-            <i class="fas fa-at"></i>
-        </div>
-        <h3 class="popup-title">Email Tidak Valid!</h3>
-        <p class="popup-message">Format email yang Anda masukkan salah.<br>Contoh: nama@email.com</p>
-        <button class="popup-btn btn-error" onclick="closePopup('popup-email-invalid')">Oke, Perbaiki</button>
+<div class="popup-container">
+    <div class="popup-icon-error">
+        <i class="fas fa-at"></i>
     </div>
+    <h3 class="popup-title">Email Tidak Valid!</h3>
+    <p class="popup-message">Format email yang Anda masukkan salah.<br>Contoh: nama@email.com</p>
+    <button class="popup-btn btn-error" onclick="closePopup('popup-email-invalid')">Oke, Perbaiki</button>
+</div>
 </div>
 
 <!-- POPUP LOADING -->
 <div id="popup-loading" class="popup-overlay">
-    <div class="popup-container popup-small">
-        <div class="popup-spinner"></div>
-        <h3 class="popup-title">Mengirim...</h3>
-        <p class="popup-message">Mohon tunggu sebentar</p>
-    </div>
+<div class="popup-container popup-small">
+    <div class="popup-spinner"></div>
+    <h3 class="popup-title">Mengirim...</h3>
+    <p class="popup-message">Mohon tunggu sebentar</p>
+</div>
 </div>
 
 <!-- POPUP SUCCESS -->
 <div id="popup-success" class="popup-overlay">
-    <div class="popup-container">
-        <div class="popup-icon-success">
-            <i class="fas fa-check"></i>
-        </div>
-        <h3 class="popup-title">Pesan Terkirim! 🚀</h3>
-        <p class="popup-message">Terima kasih telah menghubungi saya.<br>Pesan Anda akan segera saya balas.</p>
-        <button class="popup-btn btn-success" onclick="closePopup('popup-success')">Oke, Siap!</button>
+<div class="popup-container">
+    <div class="popup-icon-success">
+        <i class="fas fa-check"></i>
     </div>
+    <h3 class="popup-title">Pesan Terkirim! 🚀</h3>
+    <p class="popup-message">Terima kasih telah menghubungi saya.<br>Pesan Anda akan segera saya balas.</p>
+    <button class="popup-btn btn-success" onclick="closePopup('popup-success')">Oke, Siap!</button>
+</div>
 </div>
 
 <!-- POPUP ERROR -->
 <div id="popup-error" class="popup-overlay">
-    <div class="popup-container">
-        <div class="popup-icon-error">
-            <i class="fas fa-times"></i>
-        </div>
-        <h3 class="popup-title">Oops, Gagal!</h3>
-        <p class="popup-message">Maaf, pesan gagal dikirim.</p>
-        <p id="error-text" class="popup-error-detail">Terjadi kesalahan pada server</p>
-        <button class="popup-btn btn-error" onclick="closePopup('popup-error')">Coba Lagi</button>
+<div class="popup-container">
+    <div class="popup-icon-error">
+        <i class="fas fa-times"></i>
     </div>
+    <h3 class="popup-title">Oops, Gagal!</h3>
+    <p class="popup-message">Maaf, pesan gagal dikirim.</p>
+    <p id="error-text" class="popup-error-detail">Terjadi kesalahan pada server</p>
+    <button class="popup-btn btn-error" onclick="closePopup('popup-error')">Coba Lagi</button>
+</div>
 </div>
 
 
@@ -1818,7 +1923,7 @@ const observer = new IntersectionObserver(entries => {
 document.querySelectorAll(".hidden").forEach(el => observer.observe(el));
 
 // ============================================
-// MODAL FUNCTIONS (GAMBAR)
+// MODAL FUNCTIONS (GAMBAR) - PERBAIKAN
 // ============================================
 function openModal(imgSrc) {
     const modal = document.getElementById("modal");
@@ -1826,6 +1931,12 @@ function openModal(imgSrc) {
     if (modal && modalImg) {
         modal.style.display = "flex";
         modalImg.src = imgSrc;
+        
+        // Reset style untuk memastikan gambar tidak terpotong
+        modalImg.style.width = 'auto';
+        modalImg.style.height = 'auto';
+        modalImg.style.maxWidth = '90vw';
+        modalImg.style.maxHeight = '90vh';
     }
 }
 
@@ -2021,14 +2132,5 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 </script>
 
-</script>
-
-
-
-</script>
-
-
-
-    </body>
-    </html>
-    </html>
+</body>
+</html>
