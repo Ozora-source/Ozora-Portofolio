@@ -1561,18 +1561,18 @@ section {
             <h1>Experience</h1>
             <p>My journey through various organizations, competitions, and achievements.</p>
         </div>
-
-         <div class="card exp-card hidden" onclick="openModal('img/stf.jpeg')">
-                <h3>Team Promotion - Part Time</h3>
-                <p>BINUS University 2026</p>
-                <span class="exp-badge">Marketing</span>
-            </div>
         
         <div class="grid">
             <div class="card exp-card hidden" onclick="openModal('img/blu.jpeg')">
                 <h3>blu Ambassador</h3>
                 <p>BINUS University 2025</p>
                 <span class="exp-badge">Ambassador</span>
+            </div>
+            
+             <div class="card exp-card hidden" onclick="openModal('img/stf.jpeg')">
+                <h3>Team Promotion - Part Time</h3>
+                <p>BINUS University 2026</p>
+                <span class="exp-badge">Marketing</span>
             </div>
             
             <div class="card exp-card hidden" onclick="openModal('img/bend.jpeg')">
@@ -1830,37 +1830,7 @@ window.addEventListener('scroll', () => {
 });
 
 // Typing Effect
-const texts = ["School of Computer Science", "Software Engineering", "Creative Thinking"]
-let charIndex = 0;
-let isDeleting = false;
-const typingElement = document.querySelector('.typing');
 
-function type() {
-    const currentText = texts[textIndex];
-    
-    if (isDeleting) {
-        typingElement.textContent = currentText.substring(0, charIndex - 1);
-        charIndex--;
-    } else {
-        typingElement.textContent = currentText.substring(0, charIndex + 1);
-        charIndex++;
-    }
-    
-    let typeSpeed = isDeleting ? 50 : 100;
-    
-    if (!isDeleting && charIndex === currentText.length) {
-        typeSpeed = 2000;
-        isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        textIndex = (textIndex + 1) % texts.length;
-        typeSpeed = 500;
-    }
-    
-    setTimeout(type, typeSpeed);
-}
-
-type();
 
 // Mobile Menu
 function toggleMenu() {
